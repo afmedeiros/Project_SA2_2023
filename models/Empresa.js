@@ -1,0 +1,61 @@
+import { Sequelize } from"Sequelize";
+import connection from '../config/db.js';
+import bcrypt from 'bcrypt';
+
+const Empresa = connection.define(
+    'empresa',
+    {
+        id: {
+            type: Sequelize.INTEGER,
+            autoIncrement: true,
+            allowNull: false,
+            primaryKey: true
+        },
+        name: {
+            type: Sequelize.STRING,
+            allowNull: false
+        },
+        email: {
+            type: Sequelize.STRING,
+            allowNull: false,
+            unique: true,
+            validate: {
+                isEmail: true,
+            }
+        },
+        password: {
+            type: Sequelize.STRING,
+            allowNull: false
+        },
+        admin: {
+            type: Sequelize.BOOLEAN,
+            allowNull: false
+        },
+        CNPJ: {
+            type: Sequelize.STRING,
+            allowNull: true
+        },
+        responsavel: {
+            type: Sequelize.STRING,
+            allowNull: true
+        }
+    },
+    {
+        hooks: {
+            beforeCreate: async (user) => {
+                if (user.password) {
+                    const salt = await bcrypt.genSaltSync(10, 'a');
+                    user.password = bcrypt.hashSync(user.password, salt);
+                }
+            },
+            beforeUpdate: async (user) => {
+                if (user.password) {
+                    const salt = await bcrypt.genSaltSync(10, 'a');
+                    user.password = bcrypt.hashSync(user.password, salt);
+                }
+            }
+        }
+    }
+);
+
+export default Empresa;
