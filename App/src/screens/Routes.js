@@ -36,9 +36,9 @@ const Routes = ({navigation}) => {
         name='Menu'
         component={Menu} 
         options={{
-            tabBarIcon: () => {
-                <Entypo name='menu' size={10} />
-            }
+            tabBarIcon: () => (
+                <Entypo name='menu' size={30} />
+            )
         }}
     />
 
@@ -46,9 +46,9 @@ const Routes = ({navigation}) => {
         name='Perfil'
         component={Perfil} 
         options={{
-            tabBarIcon: () => {
-                <Entypo name='user' size={10} />
-            }
+            tabBarIcon: () => (
+                <Entypo name='user' size={30} />
+            )
         }}
         
     />
@@ -57,9 +57,9 @@ const Routes = ({navigation}) => {
         name='Medicoes'
         component={Medicoes} 
         options={{
-            tabBarIcon: () => {
-                <Entypo name='medium' size={10} />
-            }
+            tabBarIcon: () => (
+                <Entypo name='medium' size={30} />
+            )
         }}
     />
 
@@ -67,9 +67,9 @@ const Routes = ({navigation}) => {
         name='NewMedicao'
         component={NewMedicao} 
         options={{
-            tabBarIcon: () => {
-                <Entypo name='medium-with-circle' size={10} />
-            }
+            tabBarIcon: () => (
+                <Entypo name='medium-with-circle' size={30} />
+            )
         }}
     />
 
@@ -77,9 +77,9 @@ const Routes = ({navigation}) => {
         name='LocalExist'
         component={MedirLocalExistente} 
         options={{
-            tabBarIcon: () => {
-                <Entypo name='location-pin' size={10} />
-            }
+            tabBarIcon: () => (
+                <Entypo name='location-pin' size={30} />
+            )
         }}
     />
 
@@ -87,9 +87,9 @@ const Routes = ({navigation}) => {
         name='NewSetor'
         component={NewSetor} 
         options={{
-            tabBarIcon: () => {
-                <Entypo name='circle-with-plus' size={10} />
-            }
+            tabBarIcon: () => (
+                <Entypo name='circle-with-plus' size={30} />
+            )
         }}
     />
 
@@ -97,9 +97,9 @@ const Routes = ({navigation}) => {
         name='Setors'
         component={Setors} 
         options={{
-            tabBarIcon: () => {
-                <Entypo name='briefcase' size={10} />
-            }
+            tabBarIcon: () => (
+                <Entypo name='briefcase' size={30} />
+            )
         }}
     />
 
@@ -107,9 +107,9 @@ const Routes = ({navigation}) => {
         name='Relatorios'
         component={Relatorios} 
         options={{
-            tabBarIcon: () => {
-                <Entypo name='clipboard' size={10} />
-            }
+            tabBarIcon: () => (
+                <Entypo name='clipboard' size={30} />
+            )
         }}
     />
 
