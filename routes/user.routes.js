@@ -31,7 +31,7 @@ user.get('/verify', (req, res) => {
 
 //rota para registro de usuario 
 user.post('/register', async (req, res) => {
-    const { name, email, password, admin } = req.body;
+    const { name, cnpj, email, password, admin } = req.body;
 
     const alreadyExistUser = await Empresa.findOne(
         { where: { email }}
@@ -44,7 +44,7 @@ user.post('/register', async (req, res) => {
             .json({ message: "E-mail ja utilizado por outro usuário." })
     }
 
-    const newUser = new Empresa({ name, email, password, admin })
+    const newUser = new Empresa({ name, cnpj, email, password, admin })
 
     const savedUser = await newUser.save().catch((err) =>{
                                 console.log("Error: ", err)

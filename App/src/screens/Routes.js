@@ -8,11 +8,10 @@ import { Entypo } from '@expo/vector-icons';
 import Menu from './Menu';
 import Perfil from './Perfil';
 import Medicoes from './Medicoes'
-import NewMedicao from './NewMedicao';
 import MedirLocalExistente from './MedirLocalExistente';
-import NewSetor from './NewSetor';
 import Setors from './Setors';
 import Relatorios from './Relatorios';
+import ValidateToken from './ValidateToken';
 
 const Tab = createBottomTabNavigator();
 
@@ -20,17 +19,7 @@ const Routes = ({navigation}) => {
     const { state, dispatch } = useContext(Context)
 
   return (
-    <Tab.Navigator screenOptions={{
-        headerRight: () => (
-            <Entypo 
-                name= 'log-out'
-                size={20}
-                style={{ margin: 10 }}
-                color= '#000'
-                onPress={() => dispatch({type: 'logOut'})}
-            />
-        )
-    }}>
+    <Tab.Navigator>
 
     <Tab.Screen
         name='Menu'
@@ -64,36 +53,6 @@ const Routes = ({navigation}) => {
     />
 
     <Tab.Screen
-        name='NewMedicao'
-        component={NewMedicao} 
-        options={{
-            tabBarIcon: () => (
-                <Entypo name='medium-with-circle' size={30} />
-            )
-        }}
-    />
-
-    <Tab.Screen
-        name='LocalExist'
-        component={MedirLocalExistente} 
-        options={{
-            tabBarIcon: () => (
-                <Entypo name='location-pin' size={30} />
-            )
-        }}
-    />
-
-    <Tab.Screen
-        name='NewSetor'
-        component={NewSetor} 
-        options={{
-            tabBarIcon: () => (
-                <Entypo name='circle-with-plus' size={30} />
-            )
-        }}
-    />
-
-    <Tab.Screen
         name='Setors'
         component={Setors} 
         options={{
@@ -109,6 +68,22 @@ const Routes = ({navigation}) => {
         options={{
             tabBarIcon: () => (
                 <Entypo name='clipboard' size={30} />
+            )
+        }}
+    />
+
+    <Tab.Screen
+        name='Sair'
+        component={ValidateToken} 
+        options={{
+            tabBarIcon: () => (
+                <Entypo 
+                name= 'log-out'
+                size={20}
+                style={{ margin: 10 }}
+                color= '#000'
+                onPress={() => dispatch({type: 'logOut'})}
+            />
             )
         }}
     />

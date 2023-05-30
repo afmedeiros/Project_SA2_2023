@@ -3,7 +3,7 @@ import React from 'react'
 
 const NewSetor = () => {
   return (
-    <View>
+    <View style={styles.container}>
       <Text>NewSetor</Text>
     </View>
   )

@@ -3,7 +3,7 @@ import React from 'react'
 
 const MedirLocalExistente = () => {
   return (
-    <View>
+    <View style={styles.container}>
       <Text>MedirLocalExistente</Text>
     </View>
   )

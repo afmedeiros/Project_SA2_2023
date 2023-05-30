@@ -3,7 +3,7 @@ import React from 'react'
 
 const Perfil = ({navigation}) => {
   return (
-    <View>
+    <View style={styles.container}>
       <Text>Perfil</Text>
     </View>
   )

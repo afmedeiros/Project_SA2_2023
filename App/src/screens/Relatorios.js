@@ -3,7 +3,7 @@ import React from 'react'
 
 const Relatorios = () => {
   return (
-    <View>
+    <View style={styles.container}>
       <Text>Relatorios</Text>
     </View>
   )

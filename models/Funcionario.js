@@ -1,9 +1,10 @@
-import { Sequelize } from"Sequelize";
+import { Sequelize } from "Sequelize";
 import connection from '../config/db.js';
+import Empresa from "./Empresa.js";
 import bcrypt from 'bcrypt';
 
-const Empresa = connection.define(
-    'empresa',
+const Funcionario = connection.define(
+    'funcionario',
     {
         id: {
             type: Sequelize.INTEGER,
@@ -31,13 +32,13 @@ const Empresa = connection.define(
             type: Sequelize.BOOLEAN,
             allowNull: true
         },
-        cnpj: {
-            type: Sequelize.STRING,
-            allowNull: true
-        },
-        responsavel: {
-            type: Sequelize.STRING,
-            allowNull: true
+        idEmpresa: {
+            type: Sequelize.INTEGER,
+            allowNull: false,
+            references: {
+                model: 'empresas',
+                key: 'id'
+            }
         }
     },
     {
@@ -58,4 +59,8 @@ const Empresa = connection.define(
     }
 );
 
-export default Empresa;
+Funcionario.belongsTo(Empresa, {
+    foreignKey: 'idEmpresa'
+})
+
+export default Funcionario;

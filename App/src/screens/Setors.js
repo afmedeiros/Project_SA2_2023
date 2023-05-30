@@ -3,7 +3,7 @@ import React from 'react'
 
 const Setors = () => {
   return (
-    <View>
+    <View style={styles.container}>
       <Text>Setors</Text>
     </View>
   )

@@ -3,7 +3,7 @@ import React from 'react'
 
 const Menu = ({navigation}) => {
   return (
-    <View>
+    <View style={styles.container}>
       <Text>Menu</Text>
     </View>
   )
