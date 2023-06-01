@@ -1,5 +1,5 @@
 {
-  "name": "foodreview",
+  "name": "lighton",
   "version": "1.0.0",
   "description": "Aplicativo Food Review para a avaliação de restaurantes",
   "main": "server.js",

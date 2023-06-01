@@ -1,15 +1,13 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 
-const Medicoes = ({navigation}) => {
+const NovaMedicao = ({navigation}) => {
   return (
     <View style={styles.container}>
-      <Text>Medicoes</Text>
+      <Text>NovaMedicao</Text>
     </View>
   )
 }
-
-export default Medicoes
 
 const styles = StyleSheet.create({
   container: {
@@ -18,5 +16,7 @@ const styles = StyleSheet.create({
     padding: 20,
     width: '100%',
     height: '100%'
-  }, 
+  },
 });
+
+export default NovaMedicao;

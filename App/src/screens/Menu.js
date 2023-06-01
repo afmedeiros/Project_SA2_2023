@@ -4,8 +4,10 @@ import React from 'react'
 const Menu = ({navigation}) => {
   return (
     <View style={styles.container}>
-      <Text>Menu</Text>
-    </View>
+      <Text>OLÁ USUÁRIO!
+        vamos começar?
+      </Text>
+  </View>
   )
 }
 

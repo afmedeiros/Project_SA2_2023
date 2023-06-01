@@ -1,15 +1,20 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
+import CustomButton from '../../components/CustomButton'
+import CustomInput from '../../components/CustomInput'
 
-const MedirLocalExistente = () => {
+const Setors = ({navigation}) => {
   return (
     <View style={styles.container}>
-      <Text>MedirLocalExistente</Text>
+      <Text>Setores</Text>
+
+      <CustomButton text='cadastrar novo setor' onPress={() => navigation.navigate("NovoSetor")} />
+    
     </View>
   )
 }
 
-export default MedirLocalExistente
+export default Setors
 
 const styles = StyleSheet.create({
     container: {

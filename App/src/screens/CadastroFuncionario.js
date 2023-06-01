@@ -5,9 +5,8 @@ import CustomInput from "../components/CustomInput";
 import CustomButton from "../components/CustomButton";
 import api from "../api";
 
-const CadastroFuncionario = () => {
+const CadastroFuncionario = ({navigation}) => {
     const [name, setName] = useState('');
-    const [cnpj, setCnpj] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [admin, setAdmin] = useState('');

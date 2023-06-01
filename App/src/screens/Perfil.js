@@ -1,10 +1,33 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import { StyleSheet, Text, View } from 'react-native';
+import React from 'react';
+import CustomButton from '../components/CustomButton'
+import CustomInput from '../components/CustomInput'
+
+
 
 const Perfil = ({navigation}) => {
-  return (
+ return (
     <View style={styles.container}>
-      <Text>Perfil</Text>
+      <Text>SEU PERFIL:</Text>
+     
+      <CustomInput placeholder="nova senha" value={Perfil} setValue={Perfil} />
+    
+      <CustomButton text='alterar senha' onPress={Perfil}>
+      
+      </CustomButton>
+      
+      <CustomInput placeholder="novo email" value={Perfil} setValue={Perfil} />
+      
+      <CustomButton text='alterar email' onpress={Perfil}>
+
+      </CustomButton>
+
+      <CustomButton text= 'adicionar foto ao perfil' onPress={Perfil}>
+
+      </CustomButton>
+    
+      
+    
     </View>
   )
 }
@@ -20,3 +43,5 @@ const styles = StyleSheet.create({
     height: '100%'
   },
 });
+
+ 

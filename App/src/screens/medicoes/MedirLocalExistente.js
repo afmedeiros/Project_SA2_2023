@@ -1,15 +1,15 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 
-const NewMedicao = () => {
+const MedirLocalExistente = ({navigation}) => {
   return (
     <View style={styles.container}>
-      <Text>NewMedicao</Text>
+      <Text>MedirLocalExistente</Text>
     </View>
   )
 }
 
-export default NewMedicao
+export default MedirLocalExistente
 
 const styles = StyleSheet.create({
     container: {

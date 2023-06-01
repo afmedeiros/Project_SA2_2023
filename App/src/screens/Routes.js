@@ -7,11 +7,9 @@ import { Entypo } from '@expo/vector-icons';
 
 import Menu from './Menu';
 import Perfil from './Perfil';
-import Medicoes from './Medicoes'
-import MedirLocalExistente from './MedirLocalExistente';
-import Setors from './Setors';
+import MedicaoRoutes from './medicoes/MedicaoRoutes'
+import SetorRoutes from './setors/SetorRoutes'
 import Relatorios from './Relatorios';
-import ValidateToken from './ValidateToken';
 
 const Tab = createBottomTabNavigator();
 
@@ -19,7 +17,17 @@ const Routes = ({navigation}) => {
     const { state, dispatch } = useContext(Context)
 
   return (
-    <Tab.Navigator>
+    <Tab.Navigator screenOptions={{
+        headerRight: () => (
+            <Entypo 
+                name= 'log-out'
+                size={20}
+                style={{ margin: 10 }}
+                color= '#000'
+                onPress={() => dispatch({type: 'logOut'})}
+            />
+        )
+    }}>
 
     <Tab.Screen
         name='Menu'
@@ -44,7 +52,7 @@ const Routes = ({navigation}) => {
 
     <Tab.Screen
         name='Medicoes'
-        component={Medicoes} 
+        component={MedicaoRoutes} 
         options={{
             tabBarIcon: () => (
                 <Entypo name='medium' size={30} />
@@ -54,7 +62,7 @@ const Routes = ({navigation}) => {
 
     <Tab.Screen
         name='Setors'
-        component={Setors} 
+        component={SetorRoutes} 
         options={{
             tabBarIcon: () => (
                 <Entypo name='briefcase' size={30} />
@@ -68,22 +76,6 @@ const Routes = ({navigation}) => {
         options={{
             tabBarIcon: () => (
                 <Entypo name='clipboard' size={30} />
-            )
-        }}
-    />
-
-    <Tab.Screen
-        name='Sair'
-        component={ValidateToken} 
-        options={{
-            tabBarIcon: () => (
-                <Entypo 
-                name= 'log-out'
-                size={20}
-                style={{ margin: 10 }}
-                color= '#000'
-                onPress={() => dispatch({type: 'logOut'})}
-            />
             )
         }}
     />
