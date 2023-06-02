@@ -1,7 +1,8 @@
 import { StyleSheet, Text, View } from 'react-native';
 import React from 'react';
-import CustomButton from '../components/CustomButton'
-import CustomInput from '../components/CustomInput'
+import CustomButton from '../../components/CustomButton'
+import CustomInput from '../../components/CustomInput'
+
 
 
 
@@ -9,7 +10,9 @@ const Perfil = ({navigation}) => {
  return (
     <View style={styles.container}>
       <Text>SEU PERFIL:</Text>
-     
+
+      <CustomButton text='Adicionar Funcionário' onPress={() => navigation.navigate("CadastroFuncionario")} />
+
       <CustomInput placeholder="nova senha" value={Perfil} setValue={Perfil} />
     
       <CustomButton text='alterar senha' onPress={Perfil}>

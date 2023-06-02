@@ -3,8 +3,8 @@ import connection from '../config/db.js';
 import Empresa from "./Empresa.js";
 import bcrypt from 'bcrypt';
 
-const Funcionario = connection.define(
-    'funcionario',
+const Funcionarios = connection.define(
+    'funcionarios',
     {
         id: {
             type: Sequelize.INTEGER,
@@ -59,8 +59,8 @@ const Funcionario = connection.define(
     }
 );
 
-Funcionario.belongsTo(Empresa, {
+Funcionarios.belongsTo(Empresa, {
     foreignKey: 'idEmpresa'
 })
 
-export default Funcionario;
+export default Funcionarios;

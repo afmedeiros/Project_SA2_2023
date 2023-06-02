@@ -1,9 +1,9 @@
 import { StyleSheet, Text, View, Image, useWindowDimensions, TouchableOpacity
 } from "react-native";
 import React, { useState } from 'react';
-import CustomInput from "../components/CustomInput";
-import CustomButton from "../components/CustomButton";
-import api from "../api";
+import CustomButton from "../../components/CustomButton";
+import CustomInput from "../../components/CustomInput";
+import api from '../../api'
 
 const CadastroFuncionario = ({navigation}) => {
     const [name, setName] = useState('');
@@ -45,8 +45,8 @@ const CadastroFuncionario = ({navigation}) => {
 
   return (
     <View style={styles.container}>
-                <Image source={Logo} style={[styles.logo, { height: height * 0.3 }]} resizeMode="contain" /> 
-
+      <Text>CADASTRO DE FUNCIONÁRIO</Text><br></br>
+                
                 <CustomInput placeholder="Nome da Empresa" value={name} setValue={setName} />
 
                 <CustomInput placeholder="Email" value={email} setValue={setEmail} />
@@ -56,13 +56,7 @@ const CadastroFuncionario = ({navigation}) => {
                 <CustomInput placeholder="Admin" value={admin} setValue={setAdmin} />
 
                 <CustomButton text="Register" onPress={onRegisterPressed} />
-
-                <TouchableOpacity onPress={() => navigation.navigate("Login")} >
-                    <Text>
-                    Já tem uma conta?{" "}
-                    <Text style={styles.loginText}>Faça o login</Text>
-                    </Text>
-                </TouchableOpacity>
+              
             </View>
         )
 }
@@ -78,3 +72,5 @@ const styles = StyleSheet.create({
         height: '100%'
       }, 
 });
+
+

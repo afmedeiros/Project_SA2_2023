@@ -6,16 +6,20 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Entypo } from '@expo/vector-icons';
 
 import Menu from './Menu';
-import Perfil from './Perfil';
 import MedicaoRoutes from './medicoes/MedicaoRoutes'
 import SetorRoutes from './setors/SetorRoutes'
+import PerfilRoutes from './perfil/PerfilRoutes';
 import Relatorios from './Relatorios';
+import CadastroFuncionario from './perfil/CadastroFuncionario';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 const Tab = createBottomTabNavigator();
 
+const Stack = createNativeStackNavigator();
+
 const Routes = ({navigation}) => {
     const { state, dispatch } = useContext(Context)
-
+    
   return (
     <Tab.Navigator screenOptions={{
         headerRight: () => (
@@ -26,8 +30,10 @@ const Routes = ({navigation}) => {
                 color= '#000'
                 onPress={() => dispatch({type: 'logOut'})}
             />
+            
         )
     }}>
+
 
     <Tab.Screen
         name='Menu'
@@ -41,7 +47,7 @@ const Routes = ({navigation}) => {
 
     <Tab.Screen
         name='Perfil'
-        component={Perfil} 
+        component={PerfilRoutes} 
         options={{
             tabBarIcon: () => (
                 <Entypo name='user' size={30} />
