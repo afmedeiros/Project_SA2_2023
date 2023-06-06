@@ -1,5 +1,5 @@
 import express from 'express';
-import Funcionarios from '../models/Funcionarios';
+import Funcionarios from '../models/Funcionarios.js';
 import jwt from 'jsonwebtoken';
 
 const verifyToken = (token, res) => {

@@ -1,11 +1,14 @@
 import { StyleSheet, TouchableOpacity, View, Image, useWindowDimensions, Text, TextInput } from "react-native";
 import React, { useState, useContext } from 'react';
 import Logo from '../assets/images/logo.png';
+import background from '../assets/images/background.jpg';
 import CustomInput from "../components/CustomInput";
 import CustomButton from "../components/CustomButton";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import api from '../api';
 import { Context } from '../context/dataContext';
+import { ImageBackground } from "react-native";
+
 
 const Login = ({ navigation }) => {
     const { dispatch } = useContext(Context);
@@ -43,6 +46,7 @@ const Login = ({ navigation }) => {
 
     return (
         <View style={styles.view}>
+      <ImageBackground source={require('../assets/images/background.jpg')} style={styles.imageBackground}>
             <Image
                 source={Logo}
                 style={[styles.logo, { height: height * 0.3 }]}
@@ -74,28 +78,44 @@ const Login = ({ navigation }) => {
                     </Text>
                 </Text>
             </TouchableOpacity>
-
+            
+      
+    </ImageBackground>
         </View>
     )
 };
 
 const styles = StyleSheet.create({
     view: {
-        backgroundColor: '#FFFFFF',
-        alignItems: 'center',
-        padding: 20,
+        alignItems: 'cover',
+        padding: 0,
         width: '100%',
-        height: '100%'
+        height: '100%',
+        opacity: 1
     },
+    imageBackground: {
+        flex: 1,
+        resizeMode: "cover",
+        justifyContent: "center",
+        alignItems: "center",
+        opacity: 0.8,
+
+      },
     logo: {
         width: '70%',
         maxWidth: 300,
         maxHeight: 200,
+        opacity: 1
     },
     createAccountText: {
         fontWeight: "bold",
         color: "#6200ee",
-    },
+        opacity: 1
+    },   
+       
 });
+
+
+
 
 export default Login;
