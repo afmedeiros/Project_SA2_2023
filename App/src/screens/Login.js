@@ -46,7 +46,7 @@ const Login = ({ navigation }) => {
 
     return (
         <View style={styles.view}>
-      <ImageBackground source={require('../assets/images/background.jpg')} style={styles.imageBackground}>
+           <ImageBackground source={require('../assets/images/background.jpg')} style={styles.imageBackground}>
             <Image
                 source={Logo}
                 style={[styles.logo, { height: height * 0.3 }]}
@@ -80,7 +80,7 @@ const Login = ({ navigation }) => {
             </TouchableOpacity>
             
       
-    </ImageBackground>
+          </ImageBackground>
         </View>
     )
 };
@@ -91,26 +91,26 @@ const styles = StyleSheet.create({
         padding: 0,
         width: '100%',
         height: '100%',
-        opacity: 1
+        opacity: 1,
     },
     imageBackground: {
         flex: 1,
         resizeMode: "cover",
         justifyContent: "center",
         alignItems: "center",
-        opacity: 0.8,
+        opacity: 1,
 
       },
     logo: {
         width: '70%',
         maxWidth: 300,
         maxHeight: 200,
-        opacity: 1
+        opacity: 1,
     },
     createAccountText: {
         fontWeight: "bold",
         color: "#6200ee",
-        opacity: 1
+        opacity: 1,
     },   
        
 });
