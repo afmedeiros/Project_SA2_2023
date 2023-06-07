@@ -2,7 +2,7 @@
 import express from 'express';
 import bcrypt from 'bcrypt';
 import Empresa from '../models/Empresa.js';
-import Funcionarios from '../models/Funcionario.js';
+import Funcionario from '../models/Funcionarios.js';
 import jwt from 'jsonwebtoken';
 
 const login = express.Router();
@@ -11,6 +11,7 @@ const login = express.Router();
 login.post('/', async (req, res) => {
     const { email, password } = req.body;
     let user = {}
+    let i = 0
 
     const registeredUser = await Empresa.findOne(
         { where: { email}}
@@ -20,7 +21,7 @@ login.post('/', async (req, res) => {
         }
     );
 
-    const registered = await Funcionarios.findOne(
+    const registered = await Funcionario.findOne(
         { where: { email}}
     ).catch(
         (err) => {
@@ -28,7 +29,7 @@ login.post('/', async (req, res) => {
         }
     );
 
-    for(let i=0;i<=5;i++){
+    for(i=0;i<=5;i++){
         if ( !registeredUser ) {
             
         }else{
@@ -45,7 +46,6 @@ login.post('/', async (req, res) => {
     }
 
     if (user.email != email) {
-        i = 0
         return res
             .status(400)
             .json({ message: "Email ou senha inválidos!" })
@@ -76,6 +76,7 @@ login.post('/', async (req, res) => {
             token: token
         }
     )
+    i = 0
 
 });
 

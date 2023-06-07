@@ -1,18 +1,11 @@
 import { StyleSheet, Text, View, Image, useWindowDimensions, TouchableOpacity
 } from "react-native";
-<<<<<<< HEAD
 import React, { useContext, useState } from 'react';
 import CustomButton from "../../components/CustomButton";
 import CustomInput from "../../components/CustomInput";
 import api from '../../api'
 import {Picker} from '@react-native-picker/picker';
 import { Context } from "../../context/dataContext";
-=======
-import React, { useState } from 'react';
-import CustomButton from "../../components/CustomButton";
-import CustomInput from "../../components/CustomInput";
-import api from '../../api'
->>>>>>> a4400369a87d5993a774fe75722dafa40b4aaf7c
 
 const CadastroFuncionario = ({navigation}) => {
     const [name, setName] = useState('');
@@ -60,11 +53,7 @@ const CadastroFuncionario = ({navigation}) => {
     <View style={styles.container}>
       <Text>CADASTRO DE FUNCIONÁRIO</Text><br></br>
                 
-<<<<<<< HEAD
                 <CustomInput placeholder="Nome do Funcionario" value={name} setValue={setName} />
-=======
-                <CustomInput placeholder="Nome da Empresa" value={name} setValue={setName} />
->>>>>>> a4400369a87d5993a774fe75722dafa40b4aaf7c
 
                 <CustomInput placeholder="Email" value={email} setValue={setEmail} />
 
@@ -95,8 +84,7 @@ const styles = StyleSheet.create({
         padding: 20,
         width: '100%',
         height: '100%'
-      }, 
-<<<<<<< HEAD
+      },
     picker: {
         marginVertical: 5,
         borderRadius: 5,
@@ -109,8 +97,6 @@ const styles = StyleSheet.create({
         height: 45,
         width: '100%'
     }
-=======
->>>>>>> a4400369a87d5993a774fe75722dafa40b4aaf7c
 });
 
 
