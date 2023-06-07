@@ -1,10 +1,14 @@
 import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import React, { useContext } from 'react'
+import { Context } from '../context/dataContext'
 
 const Menu = ({navigation}) => {
+
+  const { state, dispatch } = useContext(Context);
+
   return (
     <View style={styles.container}>
-      <Text>OLÁ USUÁRIO!
+      <Text>OLÁ {state.name}!
         vamos começar?
       </Text>
   </View>

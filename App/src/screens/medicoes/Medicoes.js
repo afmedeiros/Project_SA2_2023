@@ -1,15 +1,38 @@
 import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import React, { useContext } from 'react'
 import CustomButton from '../../components/CustomButton'
 import CustomInput from '../../components/CustomInput'
+import { Context } from '../../context/dataContext'
 
 const Medicoes = ({navigation}) => {
+
+  const { state, dispatch } = useContext(Context);
+
   return (
     <View style={styles.container}>
       <Text> SUAS MEDIÇÕES</Text>
-      <CustomButton text='criar nova medição' onPress={() => navigation.navigate("NovaMedicao")} />
+
+      {state.isAdmin ? (
+
+        <CustomButton text='criar nova medição' onPress={() => navigation.navigate("NovaMedicao")} />
+
+        ) : (
+        
+          <></>
+        
+        )
+      }
+
+      {state.isAdmin ? (
       
-      <CustomButton text='medições existentes' onPress={() => navigation.navigate("MedirLocalExistente")} />
+        <CustomButton text='medições existentes' onPress={() => navigation.navigate("MedirLocalExistente")} />
+        
+        ) : (
+        
+          <></>
+        
+        )
+      }
 
     </View>
   )

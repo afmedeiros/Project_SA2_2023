@@ -1,5 +1,5 @@
 import express from 'express';
-import Funcionarios from '../models/Funcionarios.js';
+import Funcionario from '../models/Funcionarios.js';
 import jwt from 'jsonwebtoken';
 
 const verifyToken = (token, res) => {
@@ -30,9 +30,10 @@ user.get('/verify', (req, res) => {
 
 //rota para registro de usuario 
 user.post('/register', async (req, res) => {
-    const { name, cnpj, email, password, admin } = req.body;
 
-    const alreadyExistUser = await Funcionarios.findOne(
+    const { name, email, password, admin, idEmpresa } = req.body;
+
+    const alreadyExistUser = await Funcionario.findOne(
         { where: { email }}
     ).catch((err) => console.log("Error: ", err))
 
@@ -43,7 +44,8 @@ user.post('/register', async (req, res) => {
             .json({ message: "E-mail ja utilizado por outro usuário." })
     }
 
-    const newUser = new Funcionarios({ name, cnpj, email, password, admin })
+
+    const newUser = new Funcionario({ name, email, password, admin, idEmpresa })
 
     const savedUser = await newUser.save().catch((err) =>{
                                 console.log("Error: ", err)

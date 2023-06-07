@@ -12,6 +12,7 @@ const MedicaoRoutes = ({ navigation }) => {
                 <Stack.Screen name="Medicoes" component={Medicoes} />
                 <Stack.Screen name="NovaMedicao" component={NovaMedicao} />
                 <Stack.Screen name="MedirLocalExistente" component={MedirLocalExistente} />
+
             </Stack.Navigator>
     )
 }

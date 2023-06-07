@@ -4,6 +4,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 let initialState = {
     Loading: true,
     isLogged: false,
+    empress: false,
     name: '',
     isAdmin: false,
     idUser: '',
@@ -14,6 +15,8 @@ let initialState = {
 
 const reducer = (state, action) => {
     switch(action.type){
+        case "log":
+            return { ...state, isLogged: action.payload, Loading: false, empress: true }
         case "logIn":
             return { ...state, isLogged: action.payload, Loading: false }
         case "logOut":
@@ -21,7 +24,8 @@ const reducer = (state, action) => {
             return { 
                 ...state, 
                 isLogged: false,
-                isAdmin: false
+                isAdmin: false,
+                empress: false
             }
         case "verify":
             return { 

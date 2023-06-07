@@ -5,13 +5,14 @@ import Logo from '../assets/images/logo.png';
 import CustomInput from "../components/CustomInput";
 import CustomButton from "../components/CustomButton";
 import api from "../api";
+import {Picker} from '@react-native-picker/picker';
 
 const RegisterUser = ({navigation}) => {
     const [name, setName] = useState('');
     const [cnpj, setCnpj] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [admin] = useState('');
+    const [admin, setAdmin] = useState('');
     const { height } = useWindowDimensions();
 
     const onRegisterPressed = async () => {
@@ -23,7 +24,7 @@ const RegisterUser = ({navigation}) => {
                     cnpj: cnpj,
                     email: email,
                     password: password,
-                    admin: 1
+                    admin: admin
                 });
 
                 if(data.status === 200){
@@ -58,7 +59,14 @@ const RegisterUser = ({navigation}) => {
 
                 <CustomInput placeholder="Password" value={password} setValue={setPassword} secureTextEntry={true} />
 
-                {/* <CustomInput placeholder="Admin" value={admin} setValue={setAdmin} /> */}
+                <Picker
+                    selectedValue={admin}
+                    style={styles.picker}
+                    onValueChange={setAdmin}
+                >
+                    <Picker.Item label="Técnico" value="true" />
+                    <Picker.Item label="Regular User" value="false" />
+                </Picker>
 
                 <CustomButton text="Register" onPress={onRegisterPressed} />
 
@@ -90,6 +98,18 @@ const styles = StyleSheet.create({
         fontWeight: "bold",
         color: "#6200ee",
         },
+    picker: {
+        marginVertical: 5,
+        borderRadius: 5,
+        backgroundColor: 'lightgray',
+        textAlignVertical: 'center',
+        textAlign: 'center',
+        fontSize: '14px',
+        fontWeight: 'bold',
+        borderWidth: 0,
+        height: 45,
+        width: '100%'
+    }
 });
 
 

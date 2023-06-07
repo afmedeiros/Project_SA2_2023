@@ -30,11 +30,11 @@ const Funcionarios = connection.define(
         },
         admin: {
             type: Sequelize.BOOLEAN,
-            allowNull: true
+            allowNull: false
         },
         idEmpresa: {
             type: Sequelize.INTEGER,
-            allowNull: false,
+            allowNull: true,
             references: {
                 model: 'empresas',
                 key: 'id'
