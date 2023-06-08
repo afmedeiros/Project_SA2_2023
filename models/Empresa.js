@@ -34,10 +34,6 @@ const Empresa = connection.define(
         cnpj: {
             type: Sequelize.STRING,
             allowNull: true
-        },
-        responsavel: {
-            type: Sequelize.STRING,
-            allowNull: true
         }
     },
     {
