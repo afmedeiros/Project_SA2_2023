@@ -3,6 +3,7 @@ import express from 'express';
 import user from './user.routes.js';
 import login from './login.routes.js';
 import funcionario from './funcionario.routes.js';
+import setor from './setors.route.js';
 
 const router = express.Router();
 
@@ -14,6 +15,9 @@ router.use('/login', login);
 
 //leva a rota do funcionario
 router.use('/funcionario', funcionario);
+
+//leva a rota do setor
+router.use('/setor', setor)
 
 
 export default router;

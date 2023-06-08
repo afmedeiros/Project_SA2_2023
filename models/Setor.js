@@ -11,7 +11,11 @@ const Setor = connection.define(
             allowNull: false,
             primaryKey: true
         },
-        name: {
+        setor: {
+            type: Sequelize.STRING,
+            allowNull: true
+        },
+        sala: {
             type: Sequelize.STRING,
             allowNull: true
         },
