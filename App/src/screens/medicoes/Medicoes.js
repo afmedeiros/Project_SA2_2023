@@ -9,20 +9,20 @@ const Medicoes = ({navigation}) => {
 
   const { state, dispatch } = useContext(Context);
 
-  const [restaurants, setRestaurants] = useState({});
+  // const [medicoes, setMedicoes] = useState({});
 
-    useEffect(() => {
-        const onScreenLoad = async () => {
-            const list = await api.get('/restaurant/find');
-            setRestaurants(list.data.restaurants)
-            dispatch({type: "update", payload: false})
-        }
-        onScreenLoad();
-    }, [state.update]
-    )
+  //   useEffect(() => {
+  //       const onScreenLoad = async () => {
+  //           const list = await api.get('/medicao/find');
+  //           setMedicoes(list.data.restaurants)
+  //           dispatch({type: "update", payload: false})
+  //       }
+  //       onScreenLoad();
+  //   }, [state.update]
+  //   )
 
   return (
-    <View style={styles.container}>
+    <View style={styles.view}>
       <Text> SUAS MEDIÇÕES</Text>
 
       {state.isAdmin ? (
@@ -30,31 +30,33 @@ const Medicoes = ({navigation}) => {
         <CustomButton text='criar nova medição' onPress={() => navigation.navigate("NovaMedicao")} />
 
         ) : (
+
+          <></>
         
-          <FlatList
-                data={medicoes}
-                renderItem={({ item }) => {
-                    return (
-                        <View style={styles.container}>
-                            <TouchableOpacity style={styles.text} onPress={() => seeReview(item)}>
-                                    <Text style={styles.title}>{item.name}</Text>
-                                    <Text style={styles.item}>{item.type}</Text>
-                                    <Text style={styles.item}>{item.description}</Text>
-                                    <Text style={styles.item}>{item.address}</Text>
-                            </TouchableOpacity>
-                            <Entypo
-                                name="squared-plus"
-                                size={60}
-                                color="green"
-                                style={styles.icon}
-                                onPress={() => newReview(item)}
-                            />
-                        </View>
-                    )
-                }
-                }
-                keyExtractor={(item) => item.id}
-            />
+          // <FlatList
+          //       data={medicoes}
+          //       renderItem={({ item }) => {
+          //           return (
+          //               <View style={styles.container}>
+          //                   <TouchableOpacity style={styles.text} onPress={() => seeReview(item)}>
+          //                           <Text style={styles.title}>{item.name}</Text>
+          //                           <Text style={styles.item}>{item.type}</Text>
+          //                           <Text style={styles.item}>{item.description}</Text>
+          //                           <Text style={styles.item}>{item.address}</Text>
+          //                   </TouchableOpacity>
+          //                   <Entypo
+          //                       name="squared-plus"
+          //                       size={60}
+          //                       color="green"
+          //                       style={styles.icon}
+          //                       onPress={() => newReview(item)}
+          //                   />
+          //               </View>
+          //           )
+          //       }
+          //       }
+          //       keyExtractor={(item) => item.id}
+          //   />
         )
       }
 
@@ -76,13 +78,36 @@ const Medicoes = ({navigation}) => {
 export default Medicoes
 
 const styles = StyleSheet.create({
-  container: {
+  view: {
     backgroundColor: '#FFFFFF',
     alignItems: 'center',
     padding: 20,
     width: '100%',
     height: '100%'
-  }, 
+  },
+  container: {
+        flexDirection: "row",
+        flexWrap: "wrap",
+        margin: 5,
+        padding: 10,
+        borderRadius: 10,
+        backgroundColor: 'lightblue',
+        alignItems: 'center'
+  },
+  text: {
+      height: 120,
+      width: '80%',
+      justifyContent: "center",
+  },
+  title: {
+      fontSize: 30
+  },
+  item: {
+      fontSize: 15
+  },
+  icon: {
+      margin: 0
+  }
 });
 
 

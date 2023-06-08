@@ -26,7 +26,7 @@ const CadastroFuncionario = ({navigation}) => {
                     email: email,
                     password: password,
                     admin: admin,
-                    empresa: state.idUser
+                    idEmpresa: state.idUser
                 });
 
                 if(data.status === 200){
@@ -60,7 +60,6 @@ const CadastroFuncionario = ({navigation}) => {
                 <CustomInput placeholder="Password" value={password} setValue={setPassword} secureTextEntry={true} />
 
                 <Picker
-                    mode="dropdown"
                     selectedValue={admin}
                     style={styles.picker}
                     onValueChange={setAdmin}
