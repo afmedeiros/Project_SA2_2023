@@ -1,13 +1,19 @@
+
 import { StyleSheet, Text, View, FlatList } from 'react-native'
+
+
 import React, { useContext } from 'react'
 import CustomButton from '../../components/CustomButton'
 import CustomInput from '../../components/CustomInput'
 import { Context } from '../../context/dataContext'
+
 import { Entypo } from '@expo/vector-icons';
+
 
 const Medicoes = ({navigation}) => {
 
   const { state, dispatch } = useContext(Context);
+
 
   // const [medicoes, setMedicoes] = useState({});
 
@@ -21,6 +27,7 @@ const Medicoes = ({navigation}) => {
   //   }, [state.update]
   //   )
 
+
   return (
     <View style={styles.view}>
       <Text> SUAS MEDIÇÕES</Text>
@@ -30,6 +37,7 @@ const Medicoes = ({navigation}) => {
         <CustomButton text='criar nova medição' onPress={() => navigation.navigate("NovaMedicao")} />
 
         ) : (
+
 
           <></>
         
@@ -57,6 +65,11 @@ const Medicoes = ({navigation}) => {
           //       }
           //       keyExtractor={(item) => item.id}
           //   />
+=======
+        
+          <></>
+        
+
         )
       }
 

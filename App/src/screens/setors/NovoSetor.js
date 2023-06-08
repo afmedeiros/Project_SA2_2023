@@ -1,27 +1,32 @@
 import { StyleSheet, Text, View } from 'react-native';
-import { useState } from 'react';
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import CustomButton from '../../components/CustomButton';
 import CustomInput from '../../components/CustomInput';
+import api from '../../api';
+import { Context } from "../../context/dataContext";
 
 const NovoSetor = ({navigation}) => {
   const [setor, setSetor] = useState('');
   const [sala, setSala] = useState('');
 
+  const { state, dispatch } = useContext(Context);
+
   const onRegisterPressed = async () => {
             
     try{
         
-        const data = await api.post('/setor', {
+        const data = await api.post('/setor/register', {
             setor: setor,
-            sala: sala
+            sala: sala,
+            empresa: state.idEmpresa
+
         });
 
         if(data.status === 200){
 
             console.log(data);
             alert(data.data.message)
-            navigation.navigate('Login')
+            navigation.navigate('Setors')
 
         }else{
 

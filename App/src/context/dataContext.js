@@ -8,8 +8,9 @@ let initialState = {
     name: '',
     isAdmin: false,
     idUser: '',
-    idRestaurant: '',
-    nameRestaurant: '',
+    idEmpresa: '',
+    idSetor: '',
+    idFuncionario: '',
     update: false
 }
 

@@ -1,22 +1,100 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import { StyleSheet, View, Image, useWindowDimensions } from "react-native";
+import React, { useContext, useState } from 'react';
+import api from '../../api'
+import Logo from '../../assets/images/logo.png'
+import CustomInput from "../../components/CustomInput";
+import CustomButton from "../../components/CustomButton";
+import { Context } from "../../context/dataContext";
+import { Picker } from "react-native-web";
 
-const NovaMedicao = ({navigation}) => {
-  return (
-    <View style={styles.container}>
-      <Text>NovaMedicao</Text>
-    </View>
-  )
-}
+
+const NovaMedicao = ({ navigation }) => {
+
+    const { state, dispatch } = useContext(Context);
+
+    const [idFuncionario, setidFuncionario] = useState(state.idFuncionario);
+    const [idSetor, setidSetor] = useState(state.idSetor);
+    const [medicao, setMedicao] = useState('Insira a medida');
+    const [comment, setComment] = useState('Comentários?');
+
+    const { height } = useWindowDimensions();
+
+    const onRegisterPressed = async () => {
+        try {
+            const authData = await api.post("/review/register", {
+                idFuncionario: idFuncionario,
+                idSetor: idSetor,
+                medicao: medicao,
+                comment: comment,
+            });
+            if (authData.status === 200) {
+                alert(authData.data.message)
+                setMedicao("")
+                setComment("")
+                dispatch({type: "update", payload: true})
+            }
+            else {
+                console.log(authData.data.message)
+            }
+        }
+        catch (e) {
+            console.log(e)
+        }
+    }
+
+    return (
+        <View style={styles.view}>
+            <Image
+                source={Logo}
+                style={[styles.logo, { height: height * 0.3 }]}
+                resizeMode="contain"
+            />
+
+            <CustomInput
+                value={state.nameFuncionario}
+                editable={false}
+            />
+
+            <Picker
+                selectedValue={state.nameSetor}
+                style={styles.picker}
+                onValueChange={({itemValue}, itemIndex) => <Picker.Item key={nameSetor} label={nameSetor} value={nameSetor} />
+                }>          
+
+            </Picker>
+
+            
+            <CustomInput
+                placeholder="medicao"
+                value={medicao}
+                setValue={setMedicao}
+            />
+
+            <CustomInput
+                placeholder="comment"
+                value={comment}
+                setValue={setComment}
+            />
+
+            <CustomButton text="Register" onPress={onRegisterPressed} />
+        </View>
+    )
+};
 
 const styles = StyleSheet.create({
-  container: {
-    backgroundColor: '#FFFFFF',
-    alignItems: 'center',
-    padding: 20,
-    width: '100%',
-    height: '100%'
-  },
+    view: {
+        alignItems: 'center',
+        padding: 20,
+    },
+    logo: {
+        width: '70%',
+        maxWidth: 300,
+        maxHeight: 200,
+    },
+    loginText: {
+        fontWeight: "bold",
+        color: "#6200ee",
+    }
 });
 
-export default NovaMedicao;
+export default NovaMedicao
