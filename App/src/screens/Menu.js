@@ -17,17 +17,17 @@ const Menu = ({navigation}) => {
 
       <View style={styles.view2}>
 
-        <CustomButton2 text="Perfil" />
+        <CustomButton2 text="Perfil" onPress={() => navigation.navigate("Perfil")} />
 
-        <CustomButton2 text="Setores" />
+        <CustomButton2 text="Setores" onPress={() => navigation.navigate("Setors")} />
 
       </View >
 
       <View style={styles.view3}>
 
-        <CustomButton2 text="Mediçoes" />
+        <CustomButton2 text="Mediçoes" onPress={() => navigation.navigate("Medicoes")} />
 
-        <CustomButton2 text="Relatorio" />
+        <CustomButton2 text="Relatorio" onPress={() => navigation.navigate("Relatorios")} />
 
       </View>
   </View>
