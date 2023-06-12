@@ -38,8 +38,6 @@ const Medicoes = ({navigation}) => {
 
         ) : (
 
-
-          <></>
         
           // <FlatList
           //       data={medicoes}
@@ -65,7 +63,6 @@ const Medicoes = ({navigation}) => {
           //       }
           //       keyExtractor={(item) => item.id}
           //   />
-=======
         
           <></>
         

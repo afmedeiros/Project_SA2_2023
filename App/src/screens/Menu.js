@@ -1,9 +1,7 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React, { useContext } from 'react'
 import { Context } from '../context/dataContext'
-
 import CustomButton2 from '../components/CustomButton2'
-=======
 
 
 const Menu = ({navigation}) => {
@@ -11,7 +9,6 @@ const Menu = ({navigation}) => {
   const { state, dispatch } = useContext(Context);
 
   return (
-
     <View style={styles.view}>
       <View style={styles.container}>
         <Text style={styles.text}>Bem-Vindo(a) {state.name}!{"\n"}    Vamos começar?
@@ -33,16 +30,9 @@ const Menu = ({navigation}) => {
         <CustomButton2 text="Relatorio" />
 
       </View>
-
-=======
-    <View style={styles.container}>
-      <Text>OLÁ {state.name}!
-        vamos começar?
-      </Text>
-
   </View>
   )
-}
+};
 
 export default Menu
 
@@ -56,23 +46,24 @@ const styles = StyleSheet.create({
   },
   view: {
     display: 'flex',
+    alignItems: 'center',
     backgroundColor: '#FFFFFF',
     width: '100%',
-    height: '80%',
+    height: '100%',
   },
   view2: {
     flexDirection: 'row',
+    justifyContent: 'center',
     alignItems: 'center',
-    height: '50%',
-    width: '50%',
-    margin: 10
+    height: '40%',
+    width: '100%',
   },
   view3: {
     flexDirection: 'row',
+    justifyContent: 'center',
     alignItems: 'center',
-    height: '50%',
-    width: '50%',
-    margin: 10
+    height: '40%',
+    width: '100%',
   },
   text: {
     padding: 15,
