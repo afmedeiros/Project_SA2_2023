@@ -1,5 +1,5 @@
 import express from 'express';
-import Funcionario from '../models/Funcionarios.js';
+import Funcionario from '../models/Funcionario.js';
 import jwt from 'jsonwebtoken';
 
 const verifyToken = (token, res) => {
@@ -45,17 +45,17 @@ user.post('/register', async (req, res) => {
     }
 
 
-    const newUser = new Funcionario({ name, email, password, admin, idEmpresa })
+    const newFunc = new Funcionario({ name, email, password, admin, idEmpresa })
 
-    const savedUser = await newUser.save().catch((err) =>{
+    const savedFunc = await newFunc.save().catch((err) =>{
                                 console.log("Error: ", err)
                                 res
                                 .status(500)
                                 .json({error: "Não foi possivel cadastrar o usuário"})
                             })
 
-    if (savedUser) {
-        console.log(savedUser);
+    if (savedFunc) {
+        console.log(savedFunc);
         res.json({ message: "Obrigado pelo cadastro!" })
     }
 

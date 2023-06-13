@@ -5,6 +5,7 @@ let initialState = {
     Loading: true,
     isLogged: false,
     empresa: false,
+    email: '',
     name: '',
     isAdmin: false,
     idUser: '',
@@ -36,6 +37,7 @@ const reducer = (state, action) => {
                 idUser: action.payload.id, 
                 isAdmin: action.payload.admin, 
                 name: action.payload.name,
+                email: action.payload.email,
             }
         case "setRestaurant":
             return { 

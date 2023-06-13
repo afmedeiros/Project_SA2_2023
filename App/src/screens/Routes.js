@@ -9,9 +9,8 @@ import Menu from './Menu';
 import MedicaoRoutes from './medicoes/MedicaoRoutes'
 import SetorRoutes from './setors/SetorRoutes'
 import PerfilRoutes from './perfil/PerfilRoutes';
-import Relatorios from './Relatorios';
-import CadastroFuncionario from './perfil/CadastroFuncionario';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import RelatorioRoutes from './relatorio/RelatorioRoutes';
 
 const Tab = createBottomTabNavigator();
 
@@ -78,7 +77,7 @@ const Routes = ({navigation}) => {
 
     <Tab.Screen
         name='Relatorios'
-        component={Relatorios} 
+        component={RelatorioRoutes} 
         options={{
             tabBarIcon: () => (
                 <Entypo name='clipboard' size={30} />

@@ -3,7 +3,7 @@ import connection from '../config/db.js';
 import Empresa from "./Empresa.js";
 import bcrypt from 'bcrypt';
 
-const Funcionarios = connection.define(
+const Funcionario = connection.define(
     'funcionarios',
     {
         id: {
@@ -59,8 +59,8 @@ const Funcionarios = connection.define(
     }
 );
 
-Funcionarios.belongsTo(Empresa, {
+Funcionario.belongsTo(Empresa, {
     foreignKey: 'idEmpresa'
 })
 
-export default Funcionarios;
+export default Funcionario;

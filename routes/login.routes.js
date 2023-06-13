@@ -2,7 +2,7 @@
 import express from 'express';
 import bcrypt from 'bcrypt';
 import Empresa from '../models/Empresa.js';
-import Funcionario from '../models/Funcionarios.js';
+import Funcionario from '../models/Funcionario.js';
 import jwt from 'jsonwebtoken';
 
 const login = express.Router();
@@ -62,7 +62,8 @@ login.post('/', async (req, res) => {
         {
             id: user.id,
             name: user.name,
-            admin: user.admin
+            admin: user.admin,
+            email: user.email
         },
         process.env.JWT_SECRET,
         {

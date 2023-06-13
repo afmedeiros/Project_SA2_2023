@@ -4,32 +4,32 @@ import CustomButton from '../../components/CustomButton'
 import CustomInput from '../../components/CustomInput'
 import { Context } from '../../context/dataContext'
 
-const Setors = ({navigation}) => {
+const Relatorios = ({navigation}) => {
 
   const { state, dispatch } = useContext(Context);
 
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Setores</Text>
-
-        {state.isAdmin ? (
-
-        <CustomButton text='cadastrar novo setor' onPress={() => navigation.navigate("NovoSetor")} />
-
-          ) : (
-          
-            <></>
-          
-          )
-        }
-
-
-    
-    </View>
+   
+      <Text style={styles.text}>relatório</Text>
+     
+      {state.isAdmin ? (
+     
+        <CustomButton text='criar relatório' onPress={() => navigation.navigate("NovoRelatorio")} />
+       
+        ) : (
+        
+          <></>
+        
+        )
+      }
+      
+   </View>
   )
+
 }
 
-export default Setors
+export default Relatorios
 
 const styles = StyleSheet.create({
     container: {

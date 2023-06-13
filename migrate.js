@@ -1,8 +1,8 @@
 import connection from "./config/db.js";
 import Setor from "./models/setor.js";
 import Empresa from "./models/Empresa.js";
-
-import Funcionarios from "./models/Funcionarios.js"
+import Relatorio from "./models/Relatorio.js";
+import Funcionario from "./models/Funcionario.js"
 import Medicao from "./models/Medicao.js";
 import Dispositivo from "./models/Dispositivo.js"
 
