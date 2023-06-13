@@ -22,46 +22,48 @@ const verifyToken = (token, res) => {
     )
 };
 
-const user = express.Router();
+const setor = express.Router();
 
 //rota para lista de usuario
-user.get('/verify', (req, res) => {
+setor.get('/verify', (req, res) => {
     const token = req.headers['token'];
     const authData = verifyToken(token, res);
 });
 
 //rota para registro de usuario 
-user.post('/register', async (req, res) => {
+setor.post('/register', async (req, res) => {
 
-    const { name, email, password, admin, idEmpresa } = req.body;
+    const { setor, sala, idEmpresa } = req.body;
 
-    const alreadyExistUser = await Funcionario.findOne(
-        { where: { email }}
-    ).catch((err) => console.log("Error: ", err))
+    const newSetor = new Setor({ setor, sala, idEmpresa })
 
-    if (alreadyExistUser) {
-        console.log("Usuário existente: " + alreadyExistUser)
-        return res
-            .status(409)
-            .json({ message: "E-mail ja utilizado por outro usuário." })
-    }
-
-
-    const newUser = new Funcionario({ name, email, password, admin, idEmpresa })
-
-    const savedUser = await newUser.save().catch((err) =>{
+    const savedSetor = await newSetor.save().catch((err) =>{
                                 console.log("Error: ", err)
                                 res
                                 .status(500)
                                 .json({error: "Não foi possivel cadastrar o usuário"})
                             })
 
-    if (savedUser) {
-        console.log(savedUser);
+    if (savedSetor) {
+        console.log(savedSetor);
         res.json({ message: "Obrigado pelo cadastro!" })
     }
 
 });
 
-export default user;
+setor.get('/find', async (req, res) => {
+    const relatorios = await Setor.findAll().catch(
+        (err) => {
+            console.log(err)
+        }
+    );
+
+    if (relatorios){
+        return res.json({relatorios})
+    } else {
+        return null
+    }
+});
+
+export default setor;
 

@@ -18,7 +18,7 @@ const NovoSetor = ({navigation}) => {
         const data = await api.post('/setor/register', {
             setor: setor,
             sala: sala,
-            empresa: state.idEmpresa
+            idEmpresa: state.idUser
 
         });
 

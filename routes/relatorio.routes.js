@@ -2,6 +2,7 @@ import express from 'express';
 import Relatorio from '../models/Relatorio.js';
 import jwt from 'jsonwebtoken';
 
+
 const verifyToken = (token, res) => {
     jwt.verify(
         token,
@@ -47,6 +48,23 @@ relatorio.post('/register', async (req, res) => {
         res.json({ message: "Relátorio salvo!" })
     }
 
+
+
+    
+});
+
+relatorio.get('/find', async (req, res) => {
+    const relatorios = await Relatorio.findAll().catch(
+        (err) => {
+            console.log(err)
+        }
+    );
+
+    if (relatorios){
+        return res.json({relatorios})
+    } else {
+        return null
+    }
 });
 
 export default relatorio;
