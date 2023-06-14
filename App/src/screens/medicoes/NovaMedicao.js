@@ -1,11 +1,12 @@
-import { StyleSheet, View, Image, useWindowDimensions } from "react-native";
-import React, { useContext, useState } from 'react';
+import { StyleSheet, View, Image, useWindowDimensions, Picker } from "react-native";
+import React, { useContext, useEffect, useState } from 'react';
 import api from '../../api'
 import Logo from '../../assets/images/logo.png'
 import CustomInput from "../../components/CustomInput";
 import CustomButton from "../../components/CustomButton";
 import { Context } from "../../context/dataContext";
-import { Picker } from "react-native-web";
+
+
 
 
 
@@ -14,9 +15,20 @@ const NovaMedicao = ({ navigation }) => {
     const { state, dispatch } = useContext(Context);
 
     const [idFuncionario, setidFuncionario] = useState(state.idFuncionario);
-    const [salaSetor, setsalaSetor] = useState(state.salaSetor);
+    const [setors, setSetors] = useState({});
     const [medicao, setMedicao] = useState('Insira a medida');
     const [comment, setComment] = useState('Comentários?');
+
+  useEffect(() => {
+      const onScreenLoad = async () => {
+          const list = await api.get('/setor/find');
+          setSetors(list.data.setors)
+          dispatch({type: "update", payload: false})
+      }
+      onScreenLoad();
+  }, [state.update]
+  )
+  
 
     const { height } = useWindowDimensions();
 
@@ -47,6 +59,8 @@ const NovaMedicao = ({ navigation }) => {
 
      
     }
+    
+   
 
     return (
         <View style={styles.view}>
@@ -62,13 +76,15 @@ const NovaMedicao = ({ navigation }) => {
             />
 
             <Picker
-                selectedValue={state.salaSetor}
-                style={styles.picker}
-                onValueChange={({itemValue}, itemIndex) => <Picker.Item key={salaSetor} label={salaSetor} value={salaSetor} />
-                }>
-
+                data={setors}
+                selectedValue={setors.sala}
+                style={{ height: 50, width: 150 }}
+                onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}
+            >
+                <Picker.Item label={setors.sala} value={setors.sala} />
+                
             </Picker>
-
+                        
             
             <CustomInput
                 placeholder="medicao"
