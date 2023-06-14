@@ -8,12 +8,13 @@ import { Context } from "../../context/dataContext";
 import { Picker } from "react-native-web";
 
 
+
 const NovaMedicao = ({ navigation }) => {
 
     const { state, dispatch } = useContext(Context);
 
     const [idFuncionario, setidFuncionario] = useState(state.idFuncionario);
-    const [idSetor, setidSetor] = useState(state.idSetor);
+    const [salaSetor, setsalaSetor] = useState(state.salaSetor);
     const [medicao, setMedicao] = useState('Insira a medida');
     const [comment, setComment] = useState('Comentários?');
 
@@ -23,9 +24,12 @@ const NovaMedicao = ({ navigation }) => {
         try {
             const authData = await api.post("/review/register", {
                 idFuncionario: idFuncionario,
-                idSetor: idSetor,
+                salaSetor: salaSetor,
                 medicao: medicao,
                 comment: comment,
+                
+
+              
             });
             if (authData.status === 200) {
                 alert(authData.data.message)
@@ -40,6 +44,8 @@ const NovaMedicao = ({ navigation }) => {
         catch (e) {
             console.log(e)
         }
+
+     
     }
 
     return (
@@ -51,15 +57,15 @@ const NovaMedicao = ({ navigation }) => {
             />
 
             <CustomInput
-                value={state.nameFuncionario}
+                value={state.name}
                 editable={false}
             />
 
             <Picker
-                selectedValue={state.nameSetor}
+                selectedValue={state.salaSetor}
                 style={styles.picker}
-                onValueChange={({itemValue}, itemIndex) => <Picker.Item key={nameSetor} label={nameSetor} value={nameSetor} />
-                }>          
+                onValueChange={({itemValue}, itemIndex) => <Picker.Item key={salaSetor} label={salaSetor} value={salaSetor} />
+                }>
 
             </Picker>
 
