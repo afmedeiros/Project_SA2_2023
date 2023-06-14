@@ -6,6 +6,7 @@ import funcionario from './funcionario.routes.js';
 import medicao from './medicao.routes.js'
 import setor from './setors.route.js';
 import relatorio from './relatorio.routes.js'
+import sala from './sala.routes.js'
 
 
 const router = express.Router();
@@ -28,7 +29,8 @@ router.use('/medicao', medicao);
 //leva a rota do setor
 router.use('/setor', setor)
 
-
+//leva a rota do sala
+router.use('/sala', sala)
 
 export default router;
 

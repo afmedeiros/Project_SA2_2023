@@ -15,8 +15,8 @@ const NovoSetor = ({navigation}) => {
             
     try{
         
-        const data = await api.post('/setor/register', {
-            setor: setor,
+        const data = await api.post('/sala/register', {
+            setor: state.setor,
             sala: sala,
             idEmpresa: state.idUser
 
@@ -44,9 +44,10 @@ const NovoSetor = ({navigation}) => {
 
   return (
     <View style={styles.container}>
+      <CustomButton text='Voltar' onPress={() => navigation.navigate("Setors")} />
       <Text style={styles.text}>Novo Setor</Text>
      
-      <CustomInput placeholder="nome do setor" value={setor} setValue={setSetor} />
+      <CustomInput value={state.setor} editable={false} />
       
       <CustomInput placeholder="nome da sala" value={sala} setValue={setSala} />
       
@@ -59,16 +60,16 @@ const NovoSetor = ({navigation}) => {
 export default NovoSetor
 
 const styles = StyleSheet.create({
-  container: {
-    backgroundColor: '#FFFFFF',
-    alignItems: 'center',
-    padding: 20,
-    width: '100%',
-    height: '100%'
-  },
-  text:{
-    fontWeight: 'bold',
-    alignItems: 'center',
-    fontSize: 20
-  },
+    container: {
+        backgroundColor: '#FFFFFF',
+        alignItems: 'center',
+        padding: 20,
+        width: '100%',
+        height: '100%'
+    },
+    text:{
+      fontWeight: 'bold',
+      alignItems: 'center',
+      fontSize: 20
+    },
 });

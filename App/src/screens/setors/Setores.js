@@ -5,7 +5,7 @@ import { Entypo } from '@expo/vector-icons';
 import CustomButton from '../../components/CustomButton'
 import { Context } from '../../context/dataContext'
 
-const Setors = ({navigation}) => {
+const Setores = ({navigation}) => {
 
   const { state, dispatch } = useContext(Context);
 
@@ -24,13 +24,13 @@ const Setors = ({navigation}) => {
 
   const seeReview = async (item) => {
       await dispatch({type: 'setRestaurant', payload: item});
-      //navigation.navigate('RestaurantReviews');
+      navigation.navigate('SalasDoSetor');
   }
 
   const newReview = async (item) => {
       await dispatch({type: 'setRestaurant', payload: item});
       console.log(item)
-      navigation.navigate('SalasDoSetor');
+      navigation.navigate('NovaSala');
   }
 
 
@@ -56,7 +56,6 @@ const Setors = ({navigation}) => {
                   <View style={styles.containers}>
                       <TouchableOpacity style={styles.texts} onPress={() => seeReview(item)}>
                               <Text style={styles.title}>{item.setor}</Text>
-                              <Text style={styles.item}>{item.sala}</Text>
                       </TouchableOpacity>
                       <Entypo
                           name="squared-plus"
@@ -78,7 +77,7 @@ const Setors = ({navigation}) => {
   )
 }
 
-export default Setors
+export default Setores;
 
 const styles = StyleSheet.create({
     container: {
