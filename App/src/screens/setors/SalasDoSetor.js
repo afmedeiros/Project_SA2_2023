@@ -5,16 +5,49 @@ import { Entypo } from '@expo/vector-icons';
 import CustomButton from '../../components/CustomButton'
 import { Context } from '../../context/dataContext'
 
-const Setors = ({navigation}) => {
+const SalasSetor = ({navigation}) => {
 
   const { state, dispatch } = useContext(Context);
+
+  const onRegisterPressed = async () => {
+
+    try{
+
+      const data = await api.post('/setor/register', {
+          setor: name,
+
+      });
+
+      if(data.status === 200){
+
+          console.log(data);
+          alert(data.data.message)
+          navigation.navigate('Setors')
+
+      }else{
+
+          console.log(data)
+
+      }
+
+    }catch (error){
+
+      console.log(error);
+    
+    }
+  }
 
 
   const [setors, setSetors] = useState({});
 
   useEffect(() => {
       const onScreenLoad = async () => {
-          const list = await api.get('/setor/find');
+          const list = await api.get('/setor/findClass', {
+            params: {
+                setor: state.setor,
+              }
+        });
+        console.log(list.data)
           setSetors(list.data.setors)
           dispatch({type: "update", payload: false})
       }
@@ -29,34 +62,19 @@ const Setors = ({navigation}) => {
 
   const newReview = async (item) => {
       await dispatch({type: 'setRestaurant', payload: item});
-      console.log(item)
       navigation.navigate('SalasDoSetor');
   }
 
-
   return (
-    <View style={styles.container}>
-      <Text style={styles.text}>Setores</Text>
-
-        {state.isAdmin ? (
-
-        <CustomButton text='cadastrar novo setor' onPress={() => navigation.navigate("NovoSetor")} />
-
-          ) : (
-          
-            <></>
-          
-          )
-        }
-
+    <View onPress={onRegisterPressed}>
+      <CustomButton text='Voltar' onPress={() => navigation.navigate("Setors")} />
       <FlatList
           data={setors}
           renderItem={({ item }) => {
               return (
                   <View style={styles.containers}>
                       <TouchableOpacity style={styles.texts} onPress={() => seeReview(item)}>
-                              <Text style={styles.title}>{item.setor}</Text>
-                              <Text style={styles.item}>{item.sala}</Text>
+                              <Text style={styles.title}>{item.sala}</Text>
                       </TouchableOpacity>
                       <Entypo
                           name="squared-plus"
@@ -71,52 +89,49 @@ const Setors = ({navigation}) => {
           }
           keyExtractor={(item) => item.id}
       />
-
-
-    
     </View>
   )
 }
 
-export default Setors
+export default SalasSetor
 
 const styles = StyleSheet.create({
-    container: {
-        backgroundColor: '#FFFFFF',
-        alignItems: 'center',
-        padding: 20,
-        width: '100%',
-        height: '100%'
-    },
-    text:{
+  container: {
+    backgroundColor: '#FFFFFF',
+    alignItems: 'center',
+    padding: 20,
+    width: '100%',
+    height: '100%'
+  },
+  text:{
+    fontWeight: 'bold',
+    alignItems: 'center',
+    fontSize: 20
+  },
+  containers: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    margin: 10,
+    padding: 10,
+    borderRadius: 10,
+    backgroundColor: 'lightgrey',
+    alignItems: 'center',
+    minWidth: 335
+  },
+  texts: {
+      height: 120,
+      width: '80%',
+      justifyContent: "center",
+  },
+  title: {
+      fontSize: 30,
       fontWeight: 'bold',
-      alignItems: 'center',
-      fontSize: 20
-    },
-    containers: {
-      flexDirection: "row",
-      flexWrap: "wrap",
-      margin: 10,
-      padding: 10,
-      borderRadius: 10,
-      backgroundColor: 'lightgrey',
-      alignItems: 'center',
-      minWidth: 335
-    },
-    texts: {
-        height: 120,
-        width: '80%',
-        justifyContent: "center",
-    },
-    title: {
-        fontSize: 30,
-        fontWeight: 'bold',
-    },
-    item: {
-        fontSize: 18,
-        fontWeight: 'bold',
-    },
-    icon: {
-        margin: 0
-    }
-});
+  },
+  item: {
+      fontSize: 18,
+      fontWeight: 'bold',
+  },
+  icon: {
+      margin: 0
+  }
+})

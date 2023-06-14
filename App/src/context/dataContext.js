@@ -12,7 +12,8 @@ let initialState = {
     idEmpresa: '',
     idSetor: '',
     idFuncionario: '',
-    update: false
+    update: false,
+    setor: ''
 }
 
 const reducer = (state, action) => {
@@ -42,8 +43,7 @@ const reducer = (state, action) => {
         case "setRestaurant":
             return { 
                 ...state, 
-                idRestaurant: action.payload.id,
-                nameRestaurant: action.payload.name                
+                setor: action.payload.setor               
             }
         case "update":
             return {

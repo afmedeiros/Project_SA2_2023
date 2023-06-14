@@ -52,14 +52,33 @@ setor.post('/register', async (req, res) => {
 });
 
 setor.get('/find', async (req, res) => {
-    const relatorios = await Setor.findAll().catch(
+    const setors = await Setor.findAll().catch(
         (err) => {
             console.log(err)
         }
     );
 
-    if (relatorios){
-        return res.json({relatorios})
+    if (setors){
+        return res.json({setors})
+    } else {
+        return null
+    }
+});
+
+setor.get('/findClass', async (req, res) => {
+
+    const setor = req.query.setor;
+
+    const setors = await Setor.findAll(
+        { where: { setor: setor }}
+    ).catch(
+        (err) => {
+            console.log(err)
+        }
+    );
+
+    if (setors){
+        return res.json({setors})
     } else {
         return null
     }

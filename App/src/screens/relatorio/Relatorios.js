@@ -58,9 +58,7 @@ const Relatorios = ({navigation}) => {
                   <View style={styles.containers}>
                       <TouchableOpacity style={styles.texts} onPress={() => seeReview(item)}>
                               <Text style={styles.title}>{item.name}</Text>
-                              <Text style={styles.item}>{item.type}</Text>
                               <Text style={styles.item}>{item.description}</Text>
-                              <Text style={styles.item}>{item.address}</Text>
                       </TouchableOpacity>
                       {/* <Entypo
                           name="squared-plus"
@@ -103,7 +101,8 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 10,
     backgroundColor: 'lightgrey',
-    alignItems: 'center'
+    alignItems: 'center',
+    minWidth: 335
   },
   texts: {
       height: 120,
@@ -111,10 +110,12 @@ const styles = StyleSheet.create({
       justifyContent: "center",
   },
   title: {
-      fontSize: 30
+      fontSize: 30,
+      fontWeight: 'bold',
   },
   item: {
-      fontSize: 15
+      fontSize: 15,
+      fontWeight: 'bold',
   },
   icon: {
       margin: 0
