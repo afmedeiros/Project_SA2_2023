@@ -5,7 +5,7 @@ const user = express.Router();
 
 user.post('/register', async (req, res) => {
 
-    const { medicao } = req.body;
+    const { idFuncionario, salaSetor, medicao, comment } = req.body;
 
     // const alreadyExistUser = await Funcionario.findOne(
     //     { where: { email }}
@@ -19,7 +19,7 @@ user.post('/register', async (req, res) => {
     // }
 
 
-    const newUser = new Medicao({ idSetor, idEmpresa, valor })
+    const newUser = new Medicao({ idFuncionario, salaSetor, medicao, comment })
 
     const savedUser = await newUser.save().catch((err) =>{
                                 console.log("Error: ", err)

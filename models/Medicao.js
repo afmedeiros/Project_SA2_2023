@@ -1,7 +1,6 @@
 import { Sequelize } from "Sequelize";
 import connection from '../config/db.js';
-import Empresa from "./Empresa.js";
-import Setor from "./Setor.js";
+
 
 const Medicao = connection.define(
     'medicao',
@@ -12,35 +11,27 @@ const Medicao = connection.define(
             allowNull: false,
             primaryKey: true
         },
-        idSetor: {
-            type: Sequelize.INTEGER,
+        idFuncionario: {
+            type: Sequelize.STRING,
             allowNull: false,
-            references: {
-                model: 'setors',
-                key: 'id'
-            }
+
         },
-        idEmpresa: {
-            type: Sequelize.INTEGER,
+        salaSetor: {
+            type: Sequelize.STRING,
             allowNull: false,
-            references: {
-                model: 'empresas',
-                key: 'id'
-            }
+
         },
-        value: {
-            type: Sequelize.INTEGER,
+        medicao: {
+            type: Sequelize.STRING,
+            allowNull: false
+        },
+        comment: {
+            type: Sequelize.STRING,
             allowNull: false
         },
     },
 );
 
-Medicao.belongsTo(Empresa, {
-    foreignKey: 'idEmpresa'
-})
 
-Medicao.belongsTo(Setor, {
-    foreignKey: 'idSetor'
-})
 
 export default Medicao;
