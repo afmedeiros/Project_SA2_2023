@@ -18,8 +18,8 @@ const Perfil = ({navigation}) => {
 
           <View style={styles.Cabecario}>
 
-            <Text style={styles.text1}>{state.name}</Text>
-            <Text style={styles.text2}>{state.email}</Text>
+            <Text style={styles.text1}>Olá {state.name}</Text>
+            <Text style={styles.text2}>Email cadastrado: {state.email}</Text>
 
           </View>
 
@@ -37,7 +37,7 @@ const Perfil = ({navigation}) => {
             </View>
 
 
-          <CustomButton text= 'adicionar foto ao perfil' onPress={Perfil} />
+          <CustomButton text= 'Adicionar foto de perfil' onPress={Perfil} />
 
           <CustomButton text='Adicionar Funcionário' onPress={() => navigation.navigate("CadastroFuncionario")} />
 
