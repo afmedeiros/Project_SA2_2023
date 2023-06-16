@@ -13,8 +13,8 @@ const CustomButton = ({ onPress, text }) => {
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: '#3b71f3',
-        width: '100%',
+        backgroundColor: '#F8B500',
+        width: '70%',
         marginVertical: 5,
         alignItems: 'center',
         borderRadius: 5,
@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
     text: {
         padding: 15,
         fontWeight: 'bold',
-        color: 'white',
+        color: 'black',
         }
 });
 
