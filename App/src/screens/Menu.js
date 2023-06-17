@@ -2,7 +2,7 @@ import { StyleSheet, Text, View } from 'react-native'
 import React, { useContext } from 'react'
 import { Context } from '../context/dataContext'
 import CustomButton2 from '../components/CustomButton2'
-
+import { ImageBackground } from "react-native";
 
 const Menu = ({navigation}) => {
 
@@ -10,7 +10,9 @@ const Menu = ({navigation}) => {
 
   return (
     <View style={styles.view}>
-      <View style={styles.container}>
+      <ImageBackground source={require('../assets/images/background.jpg')} style={styles.imageBackground}>
+
+      <View style={styles.viewc}>
         <Text style={styles.text}>Bem-Vindo(a) {state.name}!{"\n"}    Vamos começar?
         </Text>
       </View>
@@ -28,19 +30,22 @@ const Menu = ({navigation}) => {
         <CustomButton2 text="Mediçoes" onPress={() => navigation.navigate("Medicoes")} />
 
         <CustomButton2 text="Relatorio" onPress={() => navigation.navigate("Relatorios")} />
-
       </View>
-  </View>
+      
+      </ImageBackground>
+      </View>
+      
+
+ 
   )
 };
 
 export default Menu
 
 const styles = StyleSheet.create({
-  container: {
-    backgroundColor: '#FFFFFF',
+  viewc: {
     alignItems: 'center',
-    padding: 20,
+    padding: 15,
     width: '100%',
     height: '20%',
   },
@@ -69,5 +74,14 @@ const styles = StyleSheet.create({
     padding: 15,
     fontWeight: 'bold',
     fontSize: 20
-  }
+  },
+  imageBackground: {
+    flex: 1,
+    resizeMode: "cover",
+    justifyContent: "center",
+    alignItems: "center",
+    opacity: 1,
+    width: "100%",
+
+  },
 });

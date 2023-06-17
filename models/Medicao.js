@@ -23,10 +23,7 @@ const Medicao = connection.define(
         idSala: {
             type: Sequelize.INTEGER,
             allowNull: false,
-            references: {
-                model: 'setors',
-                key: 'id'
-            }
+
         },
         medicao: {
             type: Sequelize.STRING,
@@ -35,6 +32,7 @@ const Medicao = connection.define(
         comment: {
             type: Sequelize.STRING,
             allowNull: true
+
         },
     },
 );

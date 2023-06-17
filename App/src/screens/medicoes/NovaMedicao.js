@@ -1,11 +1,13 @@
-import { StyleSheet, View, Image, useWindowDimensions } from "react-native";
-import React, { useContext, useState } from 'react';
+import { StyleSheet, View, Image, useWindowDimensions, Picker } from "react-native";
+import React, { useContext, useEffect, useState } from 'react';
 import api from '../../api'
 import Logo from '../../assets/images/logo.png'
 import CustomInput from "../../components/CustomInput";
 import CustomButton from "../../components/CustomButton";
 import { Context } from "../../context/dataContext";
-import { Picker } from "react-native-web";
+
+
+
 
 
 
@@ -14,9 +16,27 @@ const NovaMedicao = ({ navigation }) => {
     const { state, dispatch } = useContext(Context);
 
     const [idFuncionario, setidFuncionario] = useState(state.idFuncionario);
-    const [salaSetor, setsalaSetor] = useState(state.salaSetor);
+    const [setors, setSetors] = useState([]);
     const [medicao, setMedicao] = useState('Insira a medida');
-    const [comment, setComment] = useState('Comentários?');
+    const [comment, setComment] = useState('Comentários?')
+    const [selectedValue, setSelectedValue] = useState("Escolha o setor");
+    
+
+  useEffect(() => {
+      const onScreenLoad = async () => {
+          const list = await api.get('/setor/find');
+          setSetors(list.data.setors)
+          dispatch({type: "update", payload: false})
+      }
+      onScreenLoad();
+  }, [state.update]
+  )
+  
+  const setorSala = setors.map(function(setors){
+    return setors.sala;
+  });
+  
+
 
     const { height } = useWindowDimensions();
 
@@ -25,6 +45,7 @@ const NovaMedicao = ({ navigation }) => {
             const authData = await api.post("/medicao/register", {
                 idFuncionario: state.idUser,
                 sala: sala,
+
                 medicao: medicao,
                 comment: comment,
                 
@@ -47,6 +68,8 @@ const NovaMedicao = ({ navigation }) => {
 
      
     }
+    
+   
 
     return (
         <View style={styles.view}>
@@ -61,15 +84,18 @@ const NovaMedicao = ({ navigation }) => {
                 editable={false}
             />
 
-            <Picker
-                selectedValue={state.sala}
-                style={styles.picker}
-                onValueChange={({itemValue}, itemIndex) => <Picker.Item key={salaSetor} label={salaSetor} value={salaSetor} />
-                }>
-
+           <Picker
+                selectedValue={selectedValue}
+                style={{ height: 50, width: 150 }}
+                onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}
+            >
+                 {
+                    setorSala.map(cr => {
+                        return <Picker.Item label={cr} value={cr} />
+                    }
+                    )};
             </Picker>
-
-            
+                             
             <CustomInput
                 placeholder="medicao"
                 value={medicao}
@@ -86,6 +112,7 @@ const NovaMedicao = ({ navigation }) => {
         </View>
     )
 };
+
 
 const styles = StyleSheet.create({
     view: {

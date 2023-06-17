@@ -44,6 +44,7 @@ medicao.post('/register', async (req, res) => {
 
     const newMedicao = new Medicao({ idFuncionario, sala, medicao, comment })
 
+
     const savedMedicao = await newMedicao.save().catch((err) =>{
                                 console.log("Error: ", err)
                                 res
@@ -72,4 +73,4 @@ medicao.get('/find', async (req, res) => {
     }
 });
 
-export default medicao;
+export default medicao; 

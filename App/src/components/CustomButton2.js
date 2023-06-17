@@ -13,7 +13,8 @@ const CustomButton2 = ({ onPress, text }) => {
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: '#3b71f3',
+        
+        backgroundColor: 'rgba(59, 113, 243, 0.8)',
         width: '40%',
         height: '80%',
         marginHorizontal: 20,
@@ -22,6 +23,7 @@ const styles = StyleSheet.create({
         borderRadius: 20,
     },
     text: {
+        opacity: 1.0,
         padding: 15,
         fontWeight: 'bold',
         color: 'white',

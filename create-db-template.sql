@@ -1,7 +1,0 @@
--- Active: 1683670761990@@127.0.0.1@3306
-CREATE DATABASE LIGHT_ON
-    DEFAULT CHARACTER SET = 'utf8mb4';
-
-CREATE USER 'lighton'@'localhost' IDENTIFIED BY 'lighton';
-
-GRANT ALL PRIVILEGES ON LIGHT_ON.* TO 'lighton'@'localhost';
