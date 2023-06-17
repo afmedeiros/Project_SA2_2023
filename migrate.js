@@ -1,5 +1,5 @@
 import connection from "./config/db.js";
-import Setor from "./models/setor.js";
+import Setor from "./models/Setor.js";
 import Empresa from "./models/Empresa.js";
 import Relatorio from "./models/Relatorio.js";
 import Funcionario from "./models/Funcionario.js"

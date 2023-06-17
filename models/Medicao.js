@@ -1,7 +1,7 @@
 import { Sequelize } from "Sequelize";
 import connection from '../config/db.js';
-import Empresa from "./Empresa.js";
-import Setor from "./Setor.js";
+import Funcionario from '../models/Funcionario.js';
+import Setor from '../models/Setor.js'
 
 const Medicao = connection.define(
     'medicao',
@@ -12,7 +12,15 @@ const Medicao = connection.define(
             allowNull: false,
             primaryKey: true
         },
-        idSetor: {
+        idFuncionario: {
+            type: Sequelize.INTEGER,
+            allowNull: false,
+            references: {
+                model: 'funcionarios',
+                key: 'id'
+            }
+        },
+        idSala: {
             type: Sequelize.INTEGER,
             allowNull: false,
             references: {
@@ -20,27 +28,24 @@ const Medicao = connection.define(
                 key: 'id'
             }
         },
-        idEmpresa: {
-            type: Sequelize.INTEGER,
+        medicao: {
+            type: Sequelize.STRING,
             allowNull: false,
-            references: {
-                model: 'empresas',
-                key: 'id'
-            }
         },
-        value: {
-            type: Sequelize.INTEGER,
-            allowNull: false
+        comment: {
+            type: Sequelize.STRING,
+            allowNull: true
         },
     },
 );
 
-Medicao.belongsTo(Empresa, {
-    foreignKey: 'idEmpresa'
+Medicao.belongsTo(Funcionario, {
+    foreignKey: 'idFuncionario'
 })
 
 Medicao.belongsTo(Setor, {
-    foreignKey: 'idSetor'
+    foreignKey: 'idSala'
 })
+
 
 export default Medicao;

@@ -60,7 +60,7 @@ const Setores = ({navigation}) => {
                       <Entypo
                           name="squared-plus"
                           size={60}
-                          color="green"
+                          color="#949494"
                           style={styles.icon}
                           onPress={() => newReview(item)}
                       />

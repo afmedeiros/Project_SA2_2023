@@ -22,9 +22,9 @@ const NovaMedicao = ({ navigation }) => {
 
     const onRegisterPressed = async () => {
         try {
-            const authData = await api.post("/review/register", {
-                idFuncionario: idFuncionario,
-                salaSetor: salaSetor,
+            const authData = await api.post("/medicao/register", {
+                idFuncionario: state.idUser,
+                sala: sala,
                 medicao: medicao,
                 comment: comment,
                 
@@ -62,7 +62,7 @@ const NovaMedicao = ({ navigation }) => {
             />
 
             <Picker
-                selectedValue={state.salaSetor}
+                selectedValue={state.sala}
                 style={styles.picker}
                 onValueChange={({itemValue}, itemIndex) => <Picker.Item key={salaSetor} label={salaSetor} value={salaSetor} />
                 }>
@@ -100,6 +100,18 @@ const styles = StyleSheet.create({
     loginText: {
         fontWeight: "bold",
         color: "#6200ee",
+    },
+    picker: {
+        marginVertical: 5,
+        borderRadius: 5,
+        backgroundColor: 'lightgray',
+        textAlignVertical: 'center',
+        textAlign: 'center',
+        fontSize: '14px',
+        fontWeight: 'bold',
+        borderWidth: 0,
+        height: 45,
+        width: '100%'
     }
 });
 

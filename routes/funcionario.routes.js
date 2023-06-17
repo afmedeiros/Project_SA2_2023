@@ -51,12 +51,12 @@ user.post('/register', async (req, res) => {
                                 console.log("Error: ", err)
                                 res
                                 .status(500)
-                                .json({error: "Não foi possivel cadastrar o usuário"})
+                                .json({error: "Não foi possivel cadastrar o funcionario"})
                             })
 
     if (savedFunc) {
         console.log(savedFunc);
-        res.json({ message: "Obrigado pelo cadastro!" })
+        res.json({ message: "Funcionario cadastrado!" })
     }
 
 });
