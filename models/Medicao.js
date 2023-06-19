@@ -1,6 +1,11 @@
 import { Sequelize } from "Sequelize";
 import connection from '../config/db.js';
+import Funcionario from '../models/Funcionario.js';
+import Setor from '../models/Setor.js'
 
+
+//PROBLEMA COM O IDSALA (PQ COLOCOU, QUAL O USO DO IDSALA - SERIA IDSETOR)?
+//MUDEI PARA TRUE ALLOWNULL PARA PODER TESTAR E GRAVAR BD
 
 const Medicao = connection.define(
     'medicao',
@@ -12,26 +17,37 @@ const Medicao = connection.define(
             primaryKey: true
         },
         idFuncionario: {
-            type: Sequelize.STRING,
+            type: Sequelize.INTEGER,
             allowNull: false,
-
+            references: {
+                model: 'funcionarios',
+                key: 'id'
+            }
         },
-        salaSetor: {
-            type: Sequelize.STRING,
-            allowNull: false,
+        idSala: {
+            type: Sequelize.INTEGER,
+            allowNull: true,
 
         },
         medicao: {
             type: Sequelize.STRING,
-            allowNull: false
+            allowNull: false,
         },
         comment: {
             type: Sequelize.STRING,
-            allowNull: false
+            allowNull: true
+
         },
     },
 );
 
+Medicao.belongsTo(Funcionario, {
+    foreignKey: 'idFuncionario'
+})
+
+Medicao.belongsTo(Setor, {
+    foreignKey: 'idSala'
+})
 
 
 export default Medicao;

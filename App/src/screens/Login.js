@@ -1,6 +1,6 @@
 import { StyleSheet, TouchableOpacity, View, Image, useWindowDimensions, Text, TextInput } from "react-native";
 import React, { useState, useContext } from 'react';
-import Logo from '../assets/images/teste2.jpeg';
+import Logo from '../assets/images/LightOnLogin.svg';
 import background from '../assets/images/background.jpg';
 import CustomInput from "../components/CustomInput";
 import CustomButton from "../components/CustomButton";
@@ -52,15 +52,16 @@ const Login = ({ navigation }) => {
                 style={[styles.logo, { height: height * 0.3 }]}
                 resizeMode="contain"
             />
-
+            <br></br>
+            <br></br>
             <CustomInput
-                placeholder="Email"
+                placeholder="Insira seu Email"
                 value={email}
                 setValue={setEmail}
             />
 
             <CustomInput
-                placeholder="Password"
+                placeholder="Insira sua Senha"
                 value={password}
                 setValue={setPassword}
                 secureTextEntry={true}
@@ -71,9 +72,9 @@ const Login = ({ navigation }) => {
             <TouchableOpacity
                 onPress={() => navigation.navigate("RegisterUser")}
             >
-                <Text>
+                <Text style={styles.createAccountTextA}>
                     Não tem uma conta?{" "}
-                    <Text style={styles.createAccountText}>
+                    <Text style={styles.createAccountTextB}>
                         Crie uma
                     </Text>
                 </Text>
@@ -102,14 +103,20 @@ const styles = StyleSheet.create({
 
       },
     logo: {
-        width: '70%',
+        width: '100%',
         maxWidth: 300,
         maxHeight: 200,
         opacity: 1,
+        
     },
-    createAccountText: {
+    createAccountTextA: {
+        backgroundColor: 'rgba(132, 138, 138, 0.7)',
+        color: "#ffffff",
+        opacity: 1,
+    },   
+    createAccountTextB: {
         fontWeight: "bold",
-        color: "#6200ee",
+        color: "#ffffff",
         opacity: 1,
     },   
        

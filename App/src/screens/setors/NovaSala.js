@@ -45,7 +45,7 @@ const NovoSetor = ({navigation}) => {
   return (
     <View style={styles.container}>
       <CustomButton text='Voltar' onPress={() => navigation.navigate("Setors")} />
-      <Text style={styles.text}>Novo Setor</Text>
+      <Text style={styles.text}>Novo Sala</Text>
      
       <CustomInput value={state.setor} editable={false} />
       

@@ -17,34 +17,34 @@ const NovaMedicao = ({ navigation }) => {
 
     const [idFuncionario, setidFuncionario] = useState(state.idFuncionario);
     const [setors, setSetors] = useState([]);
-    const [medicao, setMedicao] = useState('Insira a medida');
-    const [comment, setComment] = useState('Comentários?')
-    const [selectedValue, setSelectedValue] = useState("Escolha o setor");
+    const [medicao, setMedicao] = useState('');
+    const [comment, setComment] = useState('')
+    const [selectedValue, setSelectedValue] = useState('');
     
 
   useEffect(() => {
       const onScreenLoad = async () => {
-          const list = await api.get('/setor/find');
+          const list = await api.get('/setor/findAll');
           setSetors(list.data.setors)
           dispatch({type: "update", payload: false})
       }
       onScreenLoad();
   }, [state.update]
-  )
+  );
   
   const setorSala = setors.map(function(setors){
-    return setors.sala;
+    return setors.setor + " " + setors.sala;
   });
   
-
 
     const { height } = useWindowDimensions();
 
     const onRegisterPressed = async () => {
         try {
             const authData = await api.post("/medicao/register", {
-                idFuncionario: state.name,
-                salaSetor: selectedValue,
+                idFuncionario: state.idUser,
+                sala: setors.sala,
+
                 medicao: medicao,
                 comment: comment,
                 
@@ -82,12 +82,14 @@ const NovaMedicao = ({ navigation }) => {
                 value={state.name}
                 editable={false}
             />
-           
+
            <Picker
+                placeholder="Escolha o setor"
                 selectedValue={selectedValue}
-                style={{ height: 50, width: 150 }}
+                style={{ height: 50, width: '90%' }}
                 onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}
-            >
+                
+            >   <Picker.Item label={'Escolha o setor'} value={0}/>
                  {
                     setorSala.map(cr => {
                         return <Picker.Item label={cr} value={cr} />
@@ -96,13 +98,13 @@ const NovaMedicao = ({ navigation }) => {
             </Picker>
                              
             <CustomInput
-                placeholder="medicao"
+                placeholder="Insira a medida"
                 value={medicao}
                 setValue={setMedicao}
             />
 
             <CustomInput
-                placeholder="comment"
+                placeholder="Comentários?"
                 value={comment}
                 setValue={setComment}
             />
@@ -126,6 +128,18 @@ const styles = StyleSheet.create({
     loginText: {
         fontWeight: "bold",
         color: "#6200ee",
+    },
+    picker: {
+        marginVertical: 5,
+        borderRadius: 5,
+        backgroundColor: 'lightgray',
+        textAlignVertical: 'center',
+        textAlign: 'center',
+        fontSize: '14px',
+        fontWeight: 'bold',
+        borderWidth: 0,
+        height: 45,
+        width: '100%'
     }
 });
 

@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
   view: {
     display: 'flex',
     alignItems: 'center',
-    backgroundColor: '#FFFFFF',
+    backgroundColor: '#F8B500',
     width: '100%',
     height: '100%',
   },

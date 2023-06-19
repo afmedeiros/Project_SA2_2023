@@ -1,11 +1,34 @@
 import express from 'express';
 import Medicao from '../models/Medicao.js';
 
-const user = express.Router();
+const verifyToken = (token, res) => {
+    jwt.verify(
+        token,
+        process.env.JWT_SECRET,
+        (err, authData) => {
+            if (err) {
 
-user.post('/register', async (req, res) => {
+                res.sendStatus(403)
 
-    const { idFuncionario, salaSetor, medicao, comment } = req.body;
+            } else {
+
+                res.json({authData})
+
+            };
+        }
+    )
+};
+
+const medicao = express.Router();
+
+medicao.get('/verify', (req, res) => {
+    const token = req.headers['token'];
+    const authData = verifyToken(token, res);
+});
+
+medicao.post('/register', async (req, res) => {
+
+    const { idFuncionario, sala, medicao, comment } = req.body;
 
     // const alreadyExistUser = await Funcionario.findOne(
     //     { where: { email }}
@@ -19,21 +42,35 @@ user.post('/register', async (req, res) => {
     // }
 
 
-    const newUser = new Medicao({ idFuncionario, salaSetor, medicao, comment })
+    const newMedicao = new Medicao({ idFuncionario, sala, medicao, comment })
 
-    const savedUser = await newUser.save().catch((err) =>{
+
+    const savedMedicao = await newMedicao.save().catch((err) =>{
                                 console.log("Error: ", err)
                                 res
                                 .status(500)
                                 .json({error: "Não foi possival salvar a medição"})
                             })
 
-    if (savedUser) {
-        console.log(savedUser);
+    if (savedMedicao) {
+        console.log(savedMedicao);
         res.json({ message: "Medição salva!" })
     }
 
 });
 
+medicao.get('/find', async (req, res) => {
+    const medicoes = await Medicao.findAll().catch(
+        (err) => {
+            console.log(err)
+        }
+    );
 
-export default user;
+    if (medicoes){
+        return res.json({medicoes})
+    } else {
+        return null
+    }
+});
+
+export default medicao; 

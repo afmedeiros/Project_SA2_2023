@@ -1,8 +1,6 @@
 
 import { StyleSheet, Text, View, FlatList } from 'react-native'
-
-
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import CustomButton from '../../components/CustomButton'
 import CustomInput from '../../components/CustomInput'
 import { Context } from '../../context/dataContext'
@@ -14,13 +12,12 @@ const Medicoes = ({navigation}) => {
 
   const { state, dispatch } = useContext(Context);
 
-
   // const [medicoes, setMedicoes] = useState({});
 
   //   useEffect(() => {
   //       const onScreenLoad = async () => {
   //           const list = await api.get('/medicao/find');
-  //           setMedicoes(list.data.restaurants)
+  //           setMedicoes(list.data.medicoes)
   //           dispatch({type: "update", payload: false})
   //       }
   //       onScreenLoad();
@@ -34,8 +31,6 @@ const Medicoes = ({navigation}) => {
 
       {state.isAdmin ? (
 
-        
-
         <CustomButton text='criar nova medição' onPress={() => navigation.navigate("NovaMedicao")} />
 
         ) : (
@@ -47,15 +42,14 @@ const Medicoes = ({navigation}) => {
           //           return (
           //               <View style={styles.container}>
           //                   <TouchableOpacity style={styles.text} onPress={() => seeReview(item)}>
-          //                           <Text style={styles.title}>{item.name}</Text>
-          //                           <Text style={styles.item}>{item.type}</Text>
-          //                           <Text style={styles.item}>{item.description}</Text>
-          //                           <Text style={styles.item}>{item.address}</Text>
+          //                           <Text style={styles.title}>{item.sala}</Text>
+          //                           <Text style={styles.title}>{item.medicao}</Text>
+          //                           <Text style={styles.title}>{item.comment}</Text>
           //                   </TouchableOpacity>
           //                   <Entypo
           //                       name="squared-plus"
           //                       size={60}
-          //                       color="green"
+          //                       color="#949494"
           //                       style={styles.icon}
           //                       onPress={() => newReview(item)}
           //                   />
@@ -65,21 +59,9 @@ const Medicoes = ({navigation}) => {
           //       }
           //       keyExtractor={(item) => item.id}
           //   />
-        
-          <></>
-        
 
-        )
-      }
-
-      {state.isAdmin ? (
-      
-        <CustomButton text='medições existentes' onPress={() => navigation.navigate("MedirLocalExistente")} />
-        
-        ) : (
-        
           <></>
-        
+
         )
       }
 
