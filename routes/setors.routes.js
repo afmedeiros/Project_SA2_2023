@@ -57,7 +57,6 @@ setor.get('/find', async (req, res) => {
         attributes: 
               [Sequelize.fn('DISTINCT', Sequelize.col('setor')), 'setor']
     }).catch(
-<<<<<<< HEAD
         (err) => {
             console.log(err)
         }
@@ -72,8 +71,7 @@ setor.get('/find', async (req, res) => {
 
 setor.get('/findAll', async (req, res) => {
     const setors = await Setor.findAll().catch(
-=======
->>>>>>> ff31461b618d7bcf1c1207dc79771824b6078767
+        
         (err) => {
             console.log(err)
         }

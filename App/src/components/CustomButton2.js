@@ -1,7 +1,7 @@
 import {Text, StyleSheet, Pressable } from 'react-native';
 import React from 'react';
 
-const CustomButton3 = ({ onPress, text }) => {
+const CustomButton2 = ({ onPress, text }) => {
     return (
         <Pressable onPress={onPress} style={styles.container}>
             <Text style={styles.text}>
@@ -13,19 +13,22 @@ const CustomButton3 = ({ onPress, text }) => {
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: '#3b71f3',
-        width: '20%',
-        height: '65%',
+        
+        backgroundColor: '#F8B500',
+        width: '40%',
+        height: '80%',
+        marginHorizontal: 20,
         justifyContent: 'center',
         alignItems: 'center',
-        borderRadius: 5,
+        borderRadius: 20,
     },
     text: {
+        opacity: 1.0,
         padding: 15,
         fontWeight: 'bold',
-        color: 'white',
-        fontSize: 10
+        color: 'black',
+        fontSize: 30
     }
 });
 
-export default CustomButton3;
+export default CustomButton2;

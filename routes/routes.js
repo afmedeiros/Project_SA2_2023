@@ -4,9 +4,10 @@ import user from './user.routes.js';
 import login from './login.routes.js';
 import funcionario from './funcionario.routes.js';
 import medicao from './medicao.routes.js'
-import setor from './setors.route.js';
+import setor from './setors.routes.js';
 import relatorio from './relatorio.routes.js'
 import sala from './sala.routes.js'
+import perfil from './perfil.routes.js'
 
 
 const router = express.Router();
@@ -31,6 +32,9 @@ router.use('/setor', setor)
 
 //leva a rota do sala
 router.use('/sala', sala)
+
+//leva a rota do perfil
+router.use('/perfil', perfil)
 
 export default router;
 

@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View } from 'react-native';
-import React, { useContext }  from 'react';
+import React, { useContext, useState }  from 'react';
 import CustomButton from '../../components/CustomButton';
 import CustomButton3 from '../../components/CustomButton3';
 import CustomInput2 from '../../components/CustomInput2';
@@ -9,7 +9,71 @@ import { Context } from '../../context/dataContext';
 
 const Perfil = ({navigation}) => {
 
+  const [novaSenha, setNovaSenha] = useState("");
+  const [senhaAntiga, setSenhaAntiga] = useState("");
+  const [confNovaSenha, setConfNovaSenha] = useState("");
+  const [NovoEmail, setNovoEmail] = useState("");
+
   const { state, dispatch } = useContext(Context);
+
+  const onRegisterSenha = async () => {
+
+      try{
+
+          const data = await api.post('/perfil/ senhaUpdate', {
+              email: state.email,
+              password: novaSenha
+
+          });
+
+          if(data.status === 200){
+
+              console.log(data);
+              alert(data.data.message)
+
+          }else{
+
+              console.log(data)
+
+          }
+
+      }catch (error){
+
+          console.log(error);
+
+      }
+
+  };
+
+
+  const onRegisterEmail = async () => {
+
+    try{
+
+        const data = await api.post('/perfil/ emailUpdate', {
+            email: state.email,
+            NovoEmail: NovoEmail,
+
+        });
+
+        if(data.status === 200){
+
+            console.log(data);
+            alert(data.data.message)
+
+        }else{
+
+            console.log(data)
+
+        }
+
+    }catch (error){
+
+        console.log(error);
+
+    }
+
+  };
 
  return (
     <View style={styles.container}>
@@ -25,15 +89,15 @@ const Perfil = ({navigation}) => {
 
           <View style={styles.corpo}>
             <View style={styles.campos}>
-              <CustomInput2 placeholder="nova senha" value={Perfil} setValue={Perfil} />
+              <CustomInput2 placeholder="nova senha" value={novaSenha} setValue={setNovaSenha} />
 
-              <CustomButton3 text='alterar senha' onPress={Perfil} />
+              <CustomButton3 text='alterar senha' onPress={onRegisterSenha} />
             </View>
 
             <View style={styles.campos}>
-              <CustomInput2 placeholder="novo email" value={Perfil} setValue={Perfil} />
+              <CustomInput2 placeholder="novo email" value={NovoEmail} setValue={setNovoEmail} />
 
-              <CustomButton3 text='alterar email' onpress={Perfil} />
+              <CustomButton3 text='alterar email' onpress={onRegisterEmail} />
             </View>
 
 

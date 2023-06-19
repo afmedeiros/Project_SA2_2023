@@ -43,12 +43,7 @@ const NovaMedicao = ({ navigation }) => {
         try {
             const authData = await api.post("/medicao/register", {
                 idFuncionario: state.idUser,
-<<<<<<< HEAD
                 sala: setors.sala,
-=======
-                sala: sala,
->>>>>>> ff31461b618d7bcf1c1207dc79771824b6078767
-
                 medicao: medicao,
                 comment: comment,
                 
@@ -123,6 +118,7 @@ const styles = StyleSheet.create({
     view: {
         alignItems: 'center',
         padding: 20,
+        height: '100%'
     },
     logo: {
         width: '70%',

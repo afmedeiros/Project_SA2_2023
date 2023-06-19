@@ -61,7 +61,7 @@ const SalasDoSetor = ({navigation}) => {
   }
 
   return (
-    <View onPress={onRegisterPressed}>
+    <View onPress={onRegisterPressed} style={styles.container}>
       <CustomButton text='Voltar' onPress={() => navigation.navigate("Setors")} />
       <FlatList
           data={setors}
