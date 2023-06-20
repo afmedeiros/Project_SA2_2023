@@ -101,7 +101,7 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         borderWidth: 0,
         height: 45,
-        width: '100%'
+        width: '90%'
     }
 });
 

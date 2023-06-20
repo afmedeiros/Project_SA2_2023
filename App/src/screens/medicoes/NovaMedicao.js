@@ -20,22 +20,22 @@ const NovaMedicao = ({ navigation }) => {
     const [medicao, setMedicao] = useState('');
     const [comment, setComment] = useState('')
     const [selectedValue, setSelectedValue] = useState('');
-    
 
-  useEffect(() => {
-      const onScreenLoad = async () => {
-          const list = await api.get('/setor/findAll');
-          setSetors(list.data.setors)
-          dispatch({type: "update", payload: false})
-      }
-      onScreenLoad();
-  }, [state.update]
-  );
-  
-  const setorSala = setors.map(function(setors){
-    return setors.setor + " " + setors.sala;
-  });
-  
+    useEffect(() => {
+        const onScreenLoad = async () => {
+            const list = await api.get('/setor/findAll');
+            setSetors(list.data.setors)
+            dispatch({ type: "update", payload: false })
+        }
+        onScreenLoad();
+    }, [state.update]
+    );
+
+
+
+
+
+
 
     const { height } = useWindowDimensions();
 
@@ -46,15 +46,15 @@ const NovaMedicao = ({ navigation }) => {
                 sala: setors.sala,
                 medicao: medicao,
                 comment: comment,
-                
 
-              
+
+
             });
             if (authData.status === 200) {
                 alert(authData.data.message)
                 setMedicao("")
                 setComment("")
-                dispatch({type: "update", payload: true})
+                dispatch({ type: "update", payload: true })
             }
             else {
                 console.log(authData.data.message)
@@ -64,10 +64,10 @@ const NovaMedicao = ({ navigation }) => {
             console.log(e)
         }
 
-     
+
     }
-    
-   
+
+
 
     return (
         <View style={styles.view}>
@@ -82,20 +82,25 @@ const NovaMedicao = ({ navigation }) => {
                 editable={false}
             />
 
-           <Picker
-                placeholder="Escolha o setor"
+            <Picker
                 selectedValue={selectedValue}
                 style={{ height: 50, width: '90%' }}
-                onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}
-                
-            >   <Picker.Item label={'Escolha o setor'} value={0}/>
-                 {
-                    setorSala.map(cr => {
-                        return <Picker.Item label={cr} value={cr} />
-                    }
-                    )};
+                onValueChange={(id) => {
+                    setSelectedValue(id); 
+                    console.log(id)
+                }}
+
+            >
+                {
+                    setors.map((setor) => (
+                        <Picker.Item 
+                            label={setor.setor + " " + setor.sala} 
+                            value={setor.id} 
+                        />
+                    ))
+                }
             </Picker>
-                             
+
             <CustomInput
                 placeholder="Insira a medida"
                 value={medicao}

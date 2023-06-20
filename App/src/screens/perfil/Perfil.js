@@ -20,7 +20,7 @@ const Perfil = ({navigation}) => {
 
       try{
 
-          const data = await api.post('/perfil/ senhaUpdate', {
+          const data = await api.post('/perfil/senhaUpdate', {
               email: state.email,
               password: novaSenha
 
@@ -50,7 +50,7 @@ const Perfil = ({navigation}) => {
 
     try{
 
-        const data = await api.post('/perfil/ emailUpdate', {
+        const data = await api.post('/perfil/emailUpdate', {
             email: state.email,
             NovoEmail: NovoEmail,
 

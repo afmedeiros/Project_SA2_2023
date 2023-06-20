@@ -12,7 +12,7 @@ const RegisterUser = ({navigation}) => {
     const [cnpj, setCnpj] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [admin, setAdmin] = useState('');
+    const [admin, setAdmin] = useState(false);
     const { height } = useWindowDimensions();
 
     const onRegisterPressed = async () => {
@@ -59,14 +59,14 @@ const RegisterUser = ({navigation}) => {
 
                 <CustomInput placeholder="Password" value={password} setValue={setPassword} secureTextEntry={true} />
 
-                <Picker
+                {/* <Picker
                     selectedValue={admin}
                     style={styles.picker}
                     onValueChange={setAdmin}
                 >
                     <Picker.Item label="Técnico" value="true" />
                     <Picker.Item label="Regular User" value="false" />
-                </Picker>
+                </Picker> */}
 
                 <CustomButton text="Register" onPress={onRegisterPressed} />
 
