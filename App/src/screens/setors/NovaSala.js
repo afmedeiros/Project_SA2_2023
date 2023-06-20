@@ -51,7 +51,7 @@ const NovoSetor = ({navigation}) => {
       
       <CustomInput placeholder="nome da sala" value={sala} setValue={setSala} />
       
-      <CustomButton text='cadastrar novo setor' onPress={onRegisterPressed} />
+      <CustomButton text='cadastrar nova sala' onPress={onRegisterPressed} />
     
     </View>
   )

@@ -25,12 +25,19 @@ const Medicao = connection.define(
         },
         idSala: {
             type: Sequelize.INTEGER,
+<<<<<<< HEAD
             allowNull: true,
+=======
+            allowNull: false,
+>>>>>>> 9926e280eff6b93c038c8525fd1cdd1b917869e0
             references: {
                 model: 'setors',
                 key: 'id'
             }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 9926e280eff6b93c038c8525fd1cdd1b917869e0
         },
         medicao: {
             type: Sequelize.STRING,

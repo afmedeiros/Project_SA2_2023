@@ -3,8 +3,7 @@ import { StyleSheet, Text, View, Image, useWindowDimensions, TouchableOpacity
 import React, { useContext, useState } from 'react';
 import CustomButton from "../../components/CustomButton";
 import CustomInput from "../../components/CustomInput";
-import api from '../../api'
-import {Picker} from '@react-native-picker/picker';
+import api from '../../api';
 import { Context } from "../../context/dataContext";
 
 const CadastroFuncionario = ({navigation}) => {
@@ -25,9 +24,8 @@ const CadastroFuncionario = ({navigation}) => {
                     name: name,
                     email: email,
                     password: password,
-                    admin: admin,
-
-                    idEmpresa: state.idUser
+                    admin: false,
+                    idEmpresa: state.idUser,
 
                     // empresa: state.idUser
 
@@ -63,18 +61,6 @@ const CadastroFuncionario = ({navigation}) => {
 
                 <CustomInput placeholder="Password" value={password} setValue={setPassword} secureTextEntry={true} />
 
-                <Picker
-
-                    mode="dropdown"
-
-                    selectedValue={admin}
-                    style={styles.picker}
-                    onValueChange={setAdmin}
-                >
-                    <Picker.Item label="Técnico" value="true" />
-                    <Picker.Item label="Regular User" value="false" />
-                </Picker>
-
                 <CustomButton text="Register" onPress={onRegisterPressed} />
               
             </View>
@@ -94,7 +80,8 @@ const styles = StyleSheet.create({
     picker: {
         marginVertical: 5,
         borderRadius: 5,
-        backgroundColor: 'lightgray',
+        backgroundColor: 'white',
+        borderColor: '#e8e8e8',
         textAlignVertical: 'center',
         textAlign: 'center',
         fontSize: '14px',

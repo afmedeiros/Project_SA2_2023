@@ -5,7 +5,6 @@ import Logo from '../assets/images/logo.png';
 import CustomInput from "../components/CustomInput";
 import CustomButton from "../components/CustomButton";
 import api from "../api";
-import {Picker} from '@react-native-picker/picker';
 
 const RegisterUser = ({navigation}) => {
     const [name, setName] = useState('');
@@ -24,7 +23,7 @@ const RegisterUser = ({navigation}) => {
                     cnpj: cnpj,
                     email: email,
                     password: password,
-                    admin: admin
+                    admin: true
                 });
 
                 if(data.status === 200){
@@ -59,6 +58,7 @@ const RegisterUser = ({navigation}) => {
 
                 <CustomInput placeholder="Password" value={password} setValue={setPassword} secureTextEntry={true} />
 
+<<<<<<< HEAD
                 {/* <Picker
                     selectedValue={admin}
                     style={styles.picker}
@@ -67,6 +67,8 @@ const RegisterUser = ({navigation}) => {
                     <Picker.Item label="Técnico" value="true" />
                     <Picker.Item label="Regular User" value="false" />
                 </Picker> */}
+=======
+>>>>>>> 9926e280eff6b93c038c8525fd1cdd1b917869e0
 
                 <CustomButton text="Register" onPress={onRegisterPressed} />
 
@@ -101,14 +103,15 @@ const styles = StyleSheet.create({
     picker: {
         marginVertical: 5,
         borderRadius: 5,
-        backgroundColor: 'lightgray',
+        backgroundColor: 'white',
+        borderColor: '#e8e8e8',
         textAlignVertical: 'center',
         textAlign: 'center',
         fontSize: '14px',
         fontWeight: 'bold',
         borderWidth: 0,
         height: 45,
-        width: '100%'
+        width: '90%'
     }
 });
 

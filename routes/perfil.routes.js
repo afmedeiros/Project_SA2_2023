@@ -2,6 +2,7 @@ import express from 'express';
 import Empresa from '../models/Empresa.js'
 import Funcionario from '../models/Funcionario.js';
 import jwt from 'jsonwebtoken';
+import bcrypt from 'bcrypt';
 
 const verifyToken = (token, res) => {
     jwt.verify(
@@ -14,7 +15,7 @@ const verifyToken = (token, res) => {
 
             } else {
 
-                res.json({authData})
+                res.json({ authData })
 
             };
         }
@@ -30,94 +31,108 @@ perfil.get('/verify', (req, res) => {
 });
 
 //rota para registro de usuario 
-perfil.post('/senhaUpdate',async (req,res)=>{
+perfil.post('/senhaUpdate', async (req, res) => {
 
-    const { email, password } = req.body;
+    const { admin, email, password, newPassword, confirmacao } = req.body;
 
-    let response = await Empresa.findOne({
-        where:{ email }
-    });
+    if (newPassword === confirmacao) {
+        if (!admin) {
+            const senhaEmpresa = await Empresa.findOne({
+                where: { email }
+            }).then(async (resp) => {
+                if (bcrypt.compareSync(password, resp.password)) {
 
-    let responses = await Funcionario.findOne({
-        where:{ email }
-    });
+                resp.password = newPassword
+                const novaSenha = await resp.save().catch((err) => {
+                    console.log("Error:", err)
+                    res
+                        .status(500)
+                        .json({ error: "Não foi possivel salvar a alteração" })
+                })
 
-    if ( response ){
+                if (novaSenha) {
+                    console.log(novaSenha);
+                    res.json({ message: "Alteração salva!" })
+                }
 
-        response.password = password
-        const response = await response.save().catch   ((err) =>{
-            console.log("Error:", err)
-            res
-            .status(500)
-            .json({error: "Não foi possivel salvar a alteração"})
-        })
+            } else {
+                res.json({ message: "Nova senha ou confirmação estão incorretas!" })
+            }
+            })
+            
+        } else if (admin) {
+            const senhaFuncionario = await Funcionario.findOne({
+                where: { email }
+            }).then(async (resp) => {
+                if (bcrypt.compareSync(password, resp.password)) {
 
-        if (savedPassword) {
-            console.lo(savedPassword);
-            res.json({ message:"Alteração sala!" })
+                resp.password = newPassword
+                const novaSenha = await resp.save().catch((err) => {
+                    console.log("Error:", err)
+                    res
+                        .status(500)
+                        .json({ error: "Não foi possivel salvar a alteração" })
+                })
+
+                if (novaSenha) {
+                    console.log(novaSenha);
+                    res.json({ message: "Alteração salva!" })
+                }
+
+            } else {
+                res.json({ message: "Nova senha ou confirmação estão incorretas!" })
+            }
+            })
+            
+        } 
+    } else {
+            res.json({ message: "Nova senha ou confirmação estão incorretas!" })
         }
-        
-    } else if ( responses ){
-
-        responses.password = password
-        const responses = await responses.save().catch   ((err) =>{
-            console.log("Error:", err)
-            res
-            .status(500)
-            .json({error: "Não foi possivel salvar a alteração"})
-        })
-
-        if (savedPassword) {
-            console.lo(savedPassword);
-            res.json({ message:"Alteração salva!" })
-        }
-    }
 });
 
-perfil.post('/emailUpdate',async (req,res)=>{
+// perfil.post('/emailUpdate', async (req, res) => {
 
-    const { email, NovoEmail } = req.body;
+//     const { admin, email, novoEmail } = req.body;
 
-    let response = await Empresa.findOne({
-        where:{ email }
-    });
-
-    let responses = await Funcionario.findOne({
-        where:{ email }
-    });
-
-    if ( response ){
-
-        response.email = NovoEmail
-        const response = await response.save().catch   ((err) =>{
-            console.log("Error:", err)
-            res
-            .status(500)
-            .json({error: "Não foi possivel salvar a alteração"})
-        })
-
-        if (response) {
-            console.lo(response);
-            res.json({ message:"Alteração salva!" })
-        }
+//     if (!admin) {
+//         const emailEmpresa = await Empresa.findOne({
+//             where: { email }
+//         }).then(async (resp) => {
+//             if (email, resp.email) {
+//             resp.email = novoEmail
+//             const newEmail = await resp.save().catch((err) => {
+//                 console.log("Error:", err)
+//                 res
+//                     .status(500)
+//                     .json({ error: "Não foi possivel salvar a alteração" })
+//             })
+//             if (newEmail) {
+//                 console.log(newEmail);
+//                 res.json({ message: "Alteração salva!" })
+//             }
+//         }
+//         })
         
-    }
-
-    if ( responses ){
-
-        responses.email = NovoEmail
-        const responses = await responses.save().catch   ((err) =>{
-            console.log("Error:", err)
-            res
-            .status(500)
-            .json({error: "Não foi possivel salvar a alteração"})
-        })
-
-        if (responses) {
-            console.lo(responses);
-            res.json({ message:"Alteração sala!" })
-        }
-    }
-});
+//     } else if (admin) {
+//         const emailFuncionario = await Funcionario.findOne({
+//             where: { email }
+//         }).then(async (resp) => {
+//             if (email, resp.email) {
+//             resp.email = novoEmail
+//             const newEmail = await resp.save().catch((err) => {
+//                 console.log("Error:", err)
+//                 res
+//                     .status(500)
+//                     .json({ error: "Não foi possivel salvar a alteração" })
+//             })
+//             if (newEmail) {
+//                 console.log(newEmail);
+//                 res.json({ message: "Alteração salva!" })
+//             }
+//         }
+//         })
+        
+//     } 
+// });
 
 export default perfil;
