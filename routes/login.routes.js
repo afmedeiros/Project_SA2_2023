@@ -22,7 +22,7 @@ login.post('/', async (req, res) => {
     );
 
     const registered = await Funcionario.findOne(
-        { where: { email}}
+        { where: { email }}
     ).catch(
         (err) => {
             console.log("Error: ", err)

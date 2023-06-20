@@ -10,8 +10,6 @@ const CadastroFuncionario = ({navigation}) => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [admin, setAdmin] = useState('');
-    const [empresa] = useState('');
     const { height } = useWindowDimensions();
 
     const { state, dispatch } = useContext(Context);
@@ -26,9 +24,6 @@ const CadastroFuncionario = ({navigation}) => {
                     password: password,
                     admin: false,
                     idEmpresa: state.idUser,
-
-                    // empresa: state.idUser
-
                 });
 
                 if(data.status === 200){

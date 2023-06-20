@@ -13,7 +13,6 @@ const Perfil = ({navigation}) => {
   const [novaSenha, setNovaSenha] = useState("");
   const [senhaAntiga, setsenhaAntiga] = useState("");
   const [confNovaSenha, setConfNovaSenha] = useState("");
-  const [novoEmail, setNovoEmail] = useState("");
 
   const { state, dispatch } = useContext(Context);
 
@@ -22,10 +21,7 @@ const Perfil = ({navigation}) => {
       try{
 
           const data = await api.post('/perfil/senhaUpdate', {
-<<<<<<< HEAD
-=======
               admin: state.isAdmin,
->>>>>>> 9926e280eff6b93c038c8525fd1cdd1b917869e0
               email: state.email,
               password: senhaAntiga,
               newPassword: novaSenha,
@@ -56,46 +52,6 @@ const Perfil = ({navigation}) => {
   };
 
 
-  // const onRegisterEmail = async () => {
-
-  //   try{
-
-<<<<<<< HEAD
-        const data = await api.post('/perfil/emailUpdate', {
-            email: state.email,
-            NovoEmail: NovoEmail,
-=======
-  //       const data = await api.post('/perfil/emailUpdate', {
-  //           admin: state.isAdmin,
-  //           email: state.email,
-  //           novoEmail: novoEmail,
->>>>>>> 9926e280eff6b93c038c8525fd1cdd1b917869e0
-
-  //       });
-
-        
-
-  //       if(data.status === 200){
-
-  //           console.log(data);
-  //           setNovoEmail('')
-  //           alert(data.data.message)
-  //           navigation.navigate('Menu')
-
-  //       }else{
-
-  //           console.log(data)
-
-  //       }
-
-  //   }catch (error){
-
-  //       console.log(error);
-
-  //   }
-
-  // };
-
  return (
     <View style={styles.container}>
 
@@ -109,11 +65,6 @@ const Perfil = ({navigation}) => {
           </View>
 
           <View style={styles.corpo}>
-            {/* <View style={styles.campos}>
-              <CustomInput2 placeholder="novo email" value={novoEmail} setValue={setNovoEmail} />
-
-              <CustomButton3 text='alterar email' onpress={onRegisterEmail} />
-            </View> */}
 
             <View style={styles.campos2}>
               <CustomInput2 placeholder="senha atual" value={senhaAntiga} setValue={setsenhaAntiga} />
