@@ -4,15 +4,16 @@ import CustomButton from '../../components/CustomButton';
 import CustomButton3 from '../../components/CustomButton3';
 import CustomInput2 from '../../components/CustomInput2';
 import { Context } from '../../context/dataContext';
+import api from '../../api'
 
 
 
 const Perfil = ({navigation}) => {
 
   const [novaSenha, setNovaSenha] = useState("");
-  const [senhaAntiga, setSenhaAntiga] = useState("");
+  const [senhaAntiga, setsenhaAntiga] = useState("");
   const [confNovaSenha, setConfNovaSenha] = useState("");
-  const [NovoEmail, setNovoEmail] = useState("");
+  const [novoEmail, setNovoEmail] = useState("");
 
   const { state, dispatch } = useContext(Context);
 
@@ -20,16 +21,22 @@ const Perfil = ({navigation}) => {
 
       try{
 
-          const data = await api.post('/perfil/ senhaUpdate', {
+          const data = await api.post('/perfil/senhaUpdate', {
+              admin: state.isAdmin,
               email: state.email,
-              password: novaSenha
-
+              password: senhaAntiga,
+              newPassword: novaSenha,
+              confirmacao: confNovaSenha
           });
 
           if(data.status === 200){
 
               console.log(data);
               alert(data.data.message)
+              setNovaSenha('')
+              setsenhaAntiga('')
+              setConfNovaSenha('')
+              navigation.navigate('Menu')
 
           }else{
 
@@ -46,34 +53,39 @@ const Perfil = ({navigation}) => {
   };
 
 
-  const onRegisterEmail = async () => {
+  // const onRegisterEmail = async () => {
 
-    try{
+  //   try{
 
-        const data = await api.post('/perfil/ emailUpdate', {
-            email: state.email,
-            NovoEmail: NovoEmail,
+  //       const data = await api.post('/perfil/emailUpdate', {
+  //           admin: state.isAdmin,
+  //           email: state.email,
+  //           novoEmail: novoEmail,
 
-        });
+  //       });
 
-        if(data.status === 200){
+        
 
-            console.log(data);
-            alert(data.data.message)
+  //       if(data.status === 200){
 
-        }else{
+  //           console.log(data);
+  //           setNovoEmail('')
+  //           alert(data.data.message)
+  //           navigation.navigate('Menu')
 
-            console.log(data)
+  //       }else{
 
-        }
+  //           console.log(data)
 
-    }catch (error){
+  //       }
 
-        console.log(error);
+  //   }catch (error){
 
-    }
+  //       console.log(error);
 
-  };
+  //   }
+
+  // };
 
  return (
     <View style={styles.container}>
@@ -88,22 +100,40 @@ const Perfil = ({navigation}) => {
           </View>
 
           <View style={styles.corpo}>
-            <View style={styles.campos}>
-              <CustomInput2 placeholder="nova senha" value={novaSenha} setValue={setNovaSenha} />
-
-              <CustomButton3 text='alterar senha' onPress={onRegisterSenha} />
-            </View>
-
-            <View style={styles.campos}>
-              <CustomInput2 placeholder="novo email" value={NovoEmail} setValue={setNovoEmail} />
+            {/* <View style={styles.campos}>
+              <CustomInput2 placeholder="novo email" value={novoEmail} setValue={setNovoEmail} />
 
               <CustomButton3 text='alterar email' onpress={onRegisterEmail} />
+            </View> */}
+
+            <View style={styles.campos2}>
+              <CustomInput2 placeholder="senha atual" value={senhaAntiga} setValue={setsenhaAntiga} />
+
             </View>
 
+            <View style={styles.campos2}>
+              <CustomInput2 placeholder="nova senha" value={novaSenha} setValue={setNovaSenha} />
+            </View>
+
+
+            <View style={styles.campos2}>
+              <CustomInput2 placeholder="confirmar nova senha" value={confNovaSenha} setValue={setConfNovaSenha} />
+
+            </View>
+              <CustomButton text= 'Alterar senha' onPress={onRegisterSenha} />
 
           <CustomButton text= 'Adicionar foto de perfil' onPress={Perfil} />
 
-          <CustomButton text='Adicionar Funcionário' onPress={() => navigation.navigate("CadastroFuncionario")} />
+          {state.isAdmin ? (
+
+            <CustomButton text='Adicionar Funcionário' onPress={() => navigation.navigate("CadastroFuncionario")} />
+
+            ) : (
+            
+              <></>
+            
+            )
+          }
 
           </View>
 
@@ -164,7 +194,14 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     fontSize: 25
-  }
+  },
+  campos2: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '100%',
+    height: '10%',
+    margin: 2
+  },
 });
 
  

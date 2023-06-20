@@ -57,21 +57,28 @@ const Setores = ({navigation}) => {
                       <TouchableOpacity style={styles.texts} onPress={() => seeReview(item)}>
                               <Text style={styles.title}>{item.setor}</Text>
                       </TouchableOpacity>
-                      <Entypo
-                          name="squared-plus"
-                          size={60}
-                          color="#949494"
-                          style={styles.icon}
-                          onPress={() => newReview(item)}
-                      />
+                      {state.isAdmin ? (
+
+                        <Entypo
+                            name="squared-plus"
+                            size={60}
+                            color="#949494"
+                            style={styles.icon}
+                            onPress={() => newReview(item)}
+                        />
+                                            
+                        ) : (
+                        
+                          <></>
+                        
+                        )
+                      }
                   </View>
               )
           }
           }
           keyExtractor={(item) => item.id}
       />
-
-
     
     </View>
   )

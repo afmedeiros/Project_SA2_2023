@@ -14,7 +14,7 @@ login.post('/', async (req, res) => {
     let i = 0
 
     const registeredUser = await Empresa.findOne(
-        { where: { email}}
+        { where: { email }}
     ).catch(
         (err) => {
             console.log("Error: ", err)
