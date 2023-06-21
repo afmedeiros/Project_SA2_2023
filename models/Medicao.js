@@ -25,11 +25,7 @@ const Medicao = connection.define(
         },
         idSala: {
             type: Sequelize.INTEGER,
-            allowNull: false,
-            references: {
-                model: 'setors',
-                key: 'id'
-            }
+            allowNull: true,
         },
         medicao: {
             type: Sequelize.STRING,
@@ -45,10 +41,6 @@ const Medicao = connection.define(
 
 Medicao.belongsTo(Funcionario, {
     foreignKey: 'idFuncionario'
-})
-
-Medicao.belongsTo(Setor, {
-    foreignKey: 'idSala'
 })
 
 

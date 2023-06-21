@@ -17,6 +17,7 @@ const NovaMedicao = ({ navigation }) => {
 
     const [idFuncionario, setidFuncionario] = useState(state.idFuncionario);
     const [setors, setSetors] = useState([]);
+    const [idSala, setidSala] = useState('');
     const [medicao, setMedicao] = useState('');
     const [comment, setComment] = useState('')
     const [selectedValue, setSelectedValue] = useState('');
@@ -43,7 +44,7 @@ const NovaMedicao = ({ navigation }) => {
         try {
             const authData = await api.post("/medicao/register", {
                 idFuncionario: state.idUser,
-                sala: setors.sala,
+                idSala: selectedValue,
                 medicao: medicao,
                 comment: comment,
 
@@ -83,12 +84,9 @@ const NovaMedicao = ({ navigation }) => {
             />
 
             <Picker
-                selectedValue={selectedValue}
+                selectedValue={idSala}
                 style={{ height: 50, width: '90%' }}
-                onValueChange={(id) => {
-                    setSelectedValue(id); 
-                    console.log(id)
-                }}
+                onValueChange={(id) => {setSelectedValue(id)}}
 
             >
                 {

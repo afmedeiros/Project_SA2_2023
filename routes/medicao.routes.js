@@ -28,7 +28,7 @@ medicao.get('/verify', (req, res) => {
 
 medicao.post('/register', async (req, res) => {
 
-    const { idFuncionario, sala, medicao, comment } = req.body;
+    const { idFuncionario, idSala, medicao, comment } = req.body;
 
     // const alreadyExistUser = await Funcionario.findOne(
     //     { where: { email }}
@@ -42,7 +42,7 @@ medicao.post('/register', async (req, res) => {
     // }
 
 
-    const newMedicao = new Medicao({ idFuncionario, sala, medicao, comment })
+    const newMedicao = new Medicao({ idFuncionario, idSala, medicao, comment })
 
 
     const savedMedicao = await newMedicao.save().catch((err) =>{
