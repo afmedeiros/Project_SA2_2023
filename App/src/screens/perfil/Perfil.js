@@ -86,7 +86,7 @@ const Perfil = ({navigation}) => {
 
           {state.isAdmin ? (
 
-            <CustomButton text='Adicionar Funcionário' onPress={() => navigation.navigate("CadastroFuncionario")} />
+            <CustomButton text='Funcionários' onPress={() => navigation.navigate("UpdateUser")} />
 
             ) : (
             

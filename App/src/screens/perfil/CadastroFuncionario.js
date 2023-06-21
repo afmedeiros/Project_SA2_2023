@@ -57,6 +57,7 @@ const CadastroFuncionario = ({navigation}) => {
                 <CustomInput placeholder="Password" value={password} setValue={setPassword} secureTextEntry={true} />
 
                 <CustomButton text="Register" onPress={onRegisterPressed} />
+                <CustomButton text='Voltar' onPress={() => navigation.navigate("UpdateUser")} />
               
             </View>
         )

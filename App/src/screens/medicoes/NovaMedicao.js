@@ -43,12 +43,10 @@ const NovaMedicao = ({ navigation }) => {
     const onRegisterPressed = async () => {
         try {
             const authData = await api.post("/medicao/register", {
-                idFuncionario: state.idUser,
+                idEmpresa: state.idUser,
                 idSala: selectedValue,
                 medicao: medicao,
                 comment: comment,
-
-
 
             });
             if (authData.status === 200) {
@@ -84,7 +82,6 @@ const NovaMedicao = ({ navigation }) => {
             />
 
             <Picker
-                selectedValue={idSala}
                 style={{ height: 50, width: '90%' }}
                 onValueChange={(id) => {setSelectedValue(id)}}
 

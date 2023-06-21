@@ -5,7 +5,7 @@ import { Entypo } from '@expo/vector-icons';
 import CustomButton from '../../components/CustomButton'
 import { Context } from '../../context/dataContext'
 
-const SalasDoSetor = ({navigation}) => {
+const MedicoesSala = ({navigation}) => {
 
   const { state, dispatch } = useContext(Context);
 
@@ -13,7 +13,7 @@ const SalasDoSetor = ({navigation}) => {
 
     try{
 
-      const data = await api.post('/setor/register', {
+      const data = await api.post('/med/register', {
           setor: name,
 
       });
@@ -38,38 +38,38 @@ const SalasDoSetor = ({navigation}) => {
   }
 
 
-  const [setors, setSetors] = useState({});
+  const [medicoes, setMedicoes] = useState({});
 
   useEffect(() => {
       const onScreenLoad = async () => {
-          const list = await api.get('/setor/findClass', {
+          const list = await api.get('/med/findClass', {
             params: {
-                setor: state.setor,
+                idSala: state.idSetor,
               }
         });
         console.log(list.data)
-          setSetors(list.data.setors)
+          setMedicoes(list.data.medicoes)
           dispatch({type: "update", payload: false})
       }
       onScreenLoad();
   }, [state.update]
   )
 
-  const seeSetor = async (item) => {
-      await dispatch({type: 'setSetor', payload: item});
-      navigation.navigate('MedicoesSala');
+  const seeReview = async (item) => {
+      await dispatch({type: 'setRestaurant', payload: item});
+      //navigation.navigate('RestaurantReviews');
   }
 
   return (
     <View onPress={onRegisterPressed} style={styles.container}>
       <CustomButton text='Voltar' onPress={() => navigation.navigate("Setors")} />
       <FlatList
-          data={setors}
+          data={medicoes}
           renderItem={({ item }) => {
               return (
                   <View style={styles.containers}>
-                      <TouchableOpacity style={styles.texts} onPress={() => seeSetor(item)}>
-                              <Text style={styles.title}>{item.sala}</Text>
+                      <TouchableOpacity style={styles.texts} onPress={() => seeReview(item)}>
+                              <Text style={styles.title}>{item.medicao}</Text>
                       </TouchableOpacity>
                   </View>
               )
@@ -81,7 +81,7 @@ const SalasDoSetor = ({navigation}) => {
   )
 }
 
-export default SalasDoSetor
+export default MedicoesSala
 
 const styles = StyleSheet.create({
   container: {

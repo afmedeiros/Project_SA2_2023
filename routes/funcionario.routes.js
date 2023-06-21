@@ -20,16 +20,16 @@ const verifyToken = (token, res) => {
     )
 };
 
-const user = express.Router();
+const funcionario = express.Router();
 
 //rota para lista de usuario
-user.get('/verify', (req, res) => {
+funcionario.get('/verify', (req, res) => {
     const token = req.headers['token'];
     const authData = verifyToken(token, res);
 });
 
 //rota para registro de usuario 
-user.post('/register', async (req, res) => {
+funcionario.post('/register', async (req, res) => {
 
     const { name, email, password, admin, idEmpresa } = req.body;
 
@@ -61,5 +61,41 @@ user.post('/register', async (req, res) => {
 
 });
 
-export default user;
+funcionario.get('/find', async (req, res) => {
+
+    const funcionarios = await Funcionario.findAll().catch(
+        (err) => {
+            console.log(err)
+        }
+    );
+
+    if (funcionarios){
+        return res.json({funcionarios})
+    } else {
+        return null
+    }
+});
+
+funcionario.post('/delete', async (req, res) => {
+
+    const id = req.body.id;
+
+    const funcionarios = await Funcionario.findOne({
+        where: { id }
+    }).catch(
+        (err) => {
+            console.log(err)
+        }
+    );
+
+    funcionarios.destroy()
+
+    if (funcionarios){
+        return res.json({ message: "Funcionario deletado com sucesso!" })
+    } else {
+        return null
+    }
+});
+
+export default funcionario;
 

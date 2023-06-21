@@ -90,49 +90,5 @@ perfil.post('/senhaUpdate', async (req, res) => {
         }
 });
 
-// perfil.post('/emailUpdate', async (req, res) => {
-
-//     const { admin, email, novoEmail } = req.body;
-
-//     if (!admin) {
-//         const emailEmpresa = await Empresa.findOne({
-//             where: { email }
-//         }).then(async (resp) => {
-//             if (email, resp.email) {
-//             resp.email = novoEmail
-//             const newEmail = await resp.save().catch((err) => {
-//                 console.log("Error:", err)
-//                 res
-//                     .status(500)
-//                     .json({ error: "Não foi possivel salvar a alteração" })
-//             })
-//             if (newEmail) {
-//                 console.log(newEmail);
-//                 res.json({ message: "Alteração salva!" })
-//             }
-//         }
-//         })
-        
-//     } else if (admin) {
-//         const emailFuncionario = await Funcionario.findOne({
-//             where: { email }
-//         }).then(async (resp) => {
-//             if (email, resp.email) {
-//             resp.email = novoEmail
-//             const newEmail = await resp.save().catch((err) => {
-//                 console.log("Error:", err)
-//                 res
-//                     .status(500)
-//                     .json({ error: "Não foi possivel salvar a alteração" })
-//             })
-//             if (newEmail) {
-//                 console.log(newEmail);
-//                 res.json({ message: "Alteração salva!" })
-//             }
-//         }
-//         })
-        
-//     } 
-// });
 
 export default perfil;

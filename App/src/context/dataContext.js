@@ -40,10 +40,11 @@ const reducer = (state, action) => {
                 name: action.payload.name,
                 email: action.payload.email,
             }
-        case "setRestaurant":
+        case "setSetor":
             return { 
                 ...state, 
-                setor: action.payload.setor               
+                setor: action.payload.setor,
+                idSetor: action.payload.id               
             }
         case "update":
             return {

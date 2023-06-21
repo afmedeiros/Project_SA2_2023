@@ -23,7 +23,7 @@ const Setores = ({navigation}) => {
   )
 
   const seeReview = async (item) => {
-      await dispatch({type: 'setRestaurant', payload: item});
+      await dispatch({type: 'setSetor', payload: item});
       navigation.navigate('SalasDoSetor');
   }
 
@@ -57,22 +57,13 @@ const Setores = ({navigation}) => {
                       <TouchableOpacity style={styles.texts} onPress={() => seeReview(item)}>
                               <Text style={styles.title}>{item.setor}</Text>
                       </TouchableOpacity>
-                      {state.isAdmin ? (
-
-                        <Entypo
+                      <Entypo
                             name="squared-plus"
                             size={60}
                             color="#949494"
                             style={styles.icon}
                             onPress={() => newReview(item)}
                         />
-                                            
-                        ) : (
-                        
-                          <></>
-                        
-                        )
-                      }
                   </View>
               )
           }
