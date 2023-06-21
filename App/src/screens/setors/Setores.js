@@ -4,6 +4,7 @@ import api from '../../api';
 import { Entypo } from '@expo/vector-icons';
 import CustomButton from '../../components/CustomButton'
 import { Context } from '../../context/dataContext'
+import { ImageBackground } from 'react-native';
 
 const Setores = ({navigation}) => {
 
@@ -28,19 +29,24 @@ const Setores = ({navigation}) => {
   }
 
   const newReview = async (item) => {
-      await dispatch({type: 'setRestaurant', payload: item});
+      await dispatch({type: 'setSetor', payload: item});
       console.log(item)
       navigation.navigate('NovaSala');
   }
 
 
   return (
+<View style={styles.view}>
+  <ImageBackground source={require('../../assets/images/setor.png')} style={styles.imageBackground}>
+
     <View style={styles.container}>
-      <Text style={styles.text}>Setores</Text>
+      <br></br>
+     
+      
 
         {state.isAdmin ? (
-
-        <CustomButton text='cadastrar novo setor' onPress={() => navigation.navigate("NovoSetor")} />
+          
+        <CustomButton text='Novo setor? Clique aqui' onPress={() => navigation.navigate("NovoSetor")} />
 
           ) : (
           
@@ -48,7 +54,8 @@ const Setores = ({navigation}) => {
           
           )
         }
-
+         <br></br> 
+         <Text style={styles.text}>Setores Cadastrados</Text>  
       <FlatList
           data={setors}
           renderItem={({ item }) => {
@@ -70,8 +77,9 @@ const Setores = ({navigation}) => {
           }
           keyExtractor={(item) => item.id}
       />
-    
     </View>
+    </ImageBackground>
+  </View>
   )
 }
 
@@ -79,16 +87,17 @@ export default Setores;
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: '#FFFFFF',
         alignItems: 'center',
-        padding: 20,
-        width: '100%',
+        backgroundColor: 'rgba(136, 138, 138, 0.4)',
+        padding: 15,
+        width: '85%',
         height: '100%'
     },
     text:{
       fontWeight: 'bold',
       alignItems: 'center',
-      fontSize: 20
+      fontSize: 20,
+      color: 'white',
     },
     containers: {
       flexDirection: "row",
@@ -99,6 +108,12 @@ const styles = StyleSheet.create({
       backgroundColor: 'lightgrey',
       alignItems: 'center',
       minWidth: 335
+    },
+    view: {
+      display: 'flex',
+      alignItems: 'center',
+      width: '100%',
+      height: '100%',
     },
     texts: {
         height: 120,
@@ -115,5 +130,14 @@ const styles = StyleSheet.create({
     },
     icon: {
         margin: 0
-    }
+    },
+    imageBackground: {
+      flex: 1,
+      resizeMode: "cover",
+      justifyContent: "center",
+      alignItems: "center",
+      opacity: 1,
+      width: "100%",
+  
+    },
 });

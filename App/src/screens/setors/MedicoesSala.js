@@ -4,6 +4,7 @@ import api from '../../api';
 import { Entypo } from '@expo/vector-icons';
 import CustomButton from '../../components/CustomButton'
 import { Context } from '../../context/dataContext'
+import { ImageBackground } from 'react-native';
 
 const MedicoesSala = ({navigation}) => {
 
@@ -61,6 +62,9 @@ const MedicoesSala = ({navigation}) => {
   }
 
   return (
+    <View style={styles.view}>
+    <ImageBackground source={require('../../assets/images/setor.png')} style={styles.imageBackground}>
+    
     <View onPress={onRegisterPressed} style={styles.container}>
       <CustomButton text='Voltar' onPress={() => navigation.navigate("Setors")} />
       <FlatList
@@ -77,6 +81,8 @@ const MedicoesSala = ({navigation}) => {
           }
           keyExtractor={(item) => item.id}
       />
+         </View>
+    </ImageBackground>
     </View>
   )
 }
@@ -85,11 +91,27 @@ export default MedicoesSala
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#FFFFFF',
+    backgroundColor: 'rgba(136, 138, 138, 0.4)',
     alignItems: 'center',
-    padding: 20,
-    width: '100%',
+    padding: 15,
+    width: '85%',
     height: '100%'
+  },
+  view: {
+    display: 'flex',
+    alignItems: 'center',
+    backgroundColor: '#F8B500',
+    width: '100%',
+    height: '100%',
+  },
+  imageBackground: {
+    flex: 1,
+    resizeMode: "cover",
+    justifyContent: "center",
+    alignItems: "center",
+    opacity: 1,
+    width: "100%",
+
   },
   text:{
     fontWeight: 'bold',

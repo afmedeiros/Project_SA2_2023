@@ -5,6 +5,7 @@ import Logo from '../../assets/images/logo.png'
 import CustomInput from "../../components/CustomInput";
 import CustomButton from "../../components/CustomButton";
 import { Context } from "../../context/dataContext";
+import { ImageBackground } from 'react-native';
 
 
 
@@ -21,6 +22,7 @@ const NovaMedicao = ({ navigation }) => {
     const [medicao, setMedicao] = useState('');
     const [comment, setComment] = useState('')
     const [selectedValue, setSelectedValue] = useState('');
+    const [selectedLabel, setSelectedLabel] = useState('');
 
     useEffect(() => {
         const onScreenLoad = async () => {
@@ -32,12 +34,6 @@ const NovaMedicao = ({ navigation }) => {
     }, [state.update]
     );
 
-
-
-
-
-
-
     const { height } = useWindowDimensions();
 
     const onRegisterPressed = async () => {
@@ -47,6 +43,7 @@ const NovaMedicao = ({ navigation }) => {
                 idSala: selectedValue,
                 medicao: medicao,
                 comment: comment,
+                
 
             });
             if (authData.status === 200) {
@@ -66,31 +63,34 @@ const NovaMedicao = ({ navigation }) => {
 
     }
 
-
+console.log(selectedLabel)
 
     return (
         <View style={styles.view}>
+    <ImageBackground source={require('../../assets/images/medicao.png')} style={styles.imageBackground}>
+    <View style={styles.container}>
+      <br></br>
             <Image
                 source={Logo}
                 style={[styles.logo, { height: height * 0.3 }]}
                 resizeMode="contain"
             />
 
-            <CustomInput
+            <CustomInput             
                 value={state.name}
                 editable={false}
             />
 
             <Picker
-                style={{ height: 50, width: '90%' }}
+                style={styles.picker}
                 onValueChange={(id) => {setSelectedValue(id)}}
-
+                
             >
                 {
                     setors.map((setor) => (
                         <Picker.Item 
                             label={setor.setor + " " + setor.sala} 
-                            value={setor.id} 
+                            value={setor.id}
                         />
                     ))
                 }
@@ -108,18 +108,28 @@ const NovaMedicao = ({ navigation }) => {
                 setValue={setComment}
             />
 
-            <CustomButton text="Register" onPress={onRegisterPressed} />
+            <CustomButton text="Cadastrar" onPress={onRegisterPressed} />
+            </View>
+            </ImageBackground>
         </View>
     )
 };
 
 
 const styles = StyleSheet.create({
-    view: {
+       view: {
+        display: 'flex',
         alignItems: 'center',
-        padding: 20,
+        width: '100%',
+        height: '100%',
+      },
+      container: {
+        alignItems: 'center',
+        backgroundColor: 'rgba(136, 138, 138, 0.4)',
+        padding: 15,
+        width: '85%',
         height: '100%'
-    },
+        },
     logo: {
         width: '70%',
         maxWidth: 300,
@@ -132,15 +142,27 @@ const styles = StyleSheet.create({
     picker: {
         marginVertical: 5,
         borderRadius: 5,
-        backgroundColor: 'lightgray',
+        borderWidth: 1,
+        borderColor: '#e8e8e8',
+        height: 60, 
+        width: '90%',
+        backgroundColor: 'white',
         textAlignVertical: 'center',
-        textAlign: 'center',
         fontSize: '14px',
         fontWeight: 'bold',
+        fontColor: 'black',
         borderWidth: 0,
-        height: 45,
-        width: '100%'
-    }
+        padding: 15,
+    },
+    imageBackground: {
+        flex: 1,
+        resizeMode: "cover",
+        justifyContent: "center",
+        alignItems: "center",
+        opacity: 1,
+        width: "100%",
+    
+      },
 });
 
 export default NovaMedicao

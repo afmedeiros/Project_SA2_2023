@@ -4,6 +4,7 @@ import CustomButton from '../../components/CustomButton';
 import CustomInput from '../../components/CustomInput';
 import api from '../../api';
 import { Context } from "../../context/dataContext";
+import { ImageBackground } from 'react-native';
 
 const NovoSetor = ({navigation}) => {
   const [setor, setSetor] = useState('');
@@ -43,6 +44,9 @@ const NovoSetor = ({navigation}) => {
 }
 
   return (
+    <View style={styles.view}>
+  <ImageBackground source={require('../../assets/images/setor.png')} style={styles.imageBackground}>
+
     <View style={styles.container}>
       <Text style={styles.text}>Novo Setor</Text>
      
@@ -53,6 +57,8 @@ const NovoSetor = ({navigation}) => {
       <CustomButton text='cadastrar novo setor' onPress={onRegisterPressed} />
     
     </View>
+    </ImageBackground>
+  </View>
   )
 }
 
@@ -60,15 +66,31 @@ export default NovoSetor
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#FFFFFF',
     alignItems: 'center',
-    padding: 20,
-    width: '100%',
+    backgroundColor: 'rgba(136, 138, 138, 0.4)',
+    padding: 15,
+    width: '85%',
     height: '100%'
-  },
+},
   text:{
     fontWeight: 'bold',
     alignItems: 'center',
     fontSize: 20
+  },
+  view: {
+    display: 'flex',
+    alignItems: 'center',
+    backgroundColor: '#F8B500',
+    width: '100%',
+    height: '100%',
+  },
+  imageBackground: {
+    flex: 1,
+    resizeMode: "cover",
+    justifyContent: "center",
+    alignItems: "center",
+    opacity: 1,
+    width: "100%",
+
   },
 });

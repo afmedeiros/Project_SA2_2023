@@ -36,9 +36,13 @@ const Routes = ({navigation}) => {
 
     <Tab.Screen
         name='Menu'
-        component={Menu} 
+        component={Menu}        
         options={{
-            tabBarIcon: () => (
+                tabBarActiveBackgroundColor: 'rgba(248, 181, 0, 0.8)',
+                tabBarInactiveBackgroundColor: 'rgba(136, 138, 138, 0.3)',
+                tabBarActiveTintColor: 'black',
+                tabBarInactiveTintColor: 'black',
+                tabBarIcon: () => (
                 <Entypo name='menu' size={30} />
             )
         }}
@@ -48,6 +52,10 @@ const Routes = ({navigation}) => {
         name='Perfil'
         component={PerfilRoutes} 
         options={{
+            tabBarActiveBackgroundColor: 'rgba(248, 181, 0, 0.8)',
+            tabBarInactiveBackgroundColor: 'rgba(136, 138, 138, 0.3)',
+            tabBarActiveTintColor: 'black',
+            tabBarInactiveTintColor: 'black',
             tabBarIcon: () => (
                 <Entypo name='user' size={30} />
             )
@@ -59,6 +67,10 @@ const Routes = ({navigation}) => {
         name='Medicoes'
         component={MedicaoRoutes} 
         options={{
+            tabBarActiveBackgroundColor: 'rgba(248, 181, 0, 0.8)',
+            tabBarInactiveBackgroundColor: 'rgba(136, 138, 138, 0.3)',
+            tabBarActiveTintColor: 'black',
+            tabBarInactiveTintColor: 'black',
             tabBarIcon: () => (
                 <Entypo name='medium' size={30} />
             )
@@ -66,9 +78,13 @@ const Routes = ({navigation}) => {
     />
 
     <Tab.Screen
-        name='Setors'
+        name='Setores'
         component={SetorRoutes} 
         options={{
+            tabBarActiveBackgroundColor: 'rgba(248, 181, 0, 0.8)',
+            tabBarInactiveBackgroundColor: 'rgba(136, 138, 138, 0.3)',
+            tabBarActiveTintColor: 'black',
+            tabBarInactiveTintColor: 'black',
             tabBarIcon: () => (
                 <Entypo name='briefcase' size={30} />
             )
@@ -76,9 +92,13 @@ const Routes = ({navigation}) => {
     />
 
     <Tab.Screen
-        name='Relatorios'
+        name='Relatórios'
         component={RelatorioRoutes} 
         options={{
+            tabBarActiveBackgroundColor: 'rgba(248, 181, 0, 0.8)',
+            tabBarInactiveBackgroundColor: 'rgba(136, 138, 138, 0.3)',
+            tabBarActiveTintColor: 'black',
+            tabBarInactiveTintColor: 'black',
             tabBarIcon: () => (
                 <Entypo name='clipboard' size={30} />
             )
@@ -89,8 +109,11 @@ const Routes = ({navigation}) => {
   )
 };
 
+
 const styles = StyleSheet.create({
+   
 
 });
 
 export default Routes;
+

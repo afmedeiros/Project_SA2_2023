@@ -6,6 +6,7 @@ import CustomButton from "../../components/CustomButton";
 import api from '../../api';
 import { Context } from '../../context/dataContext';
 import { NavigationHelpersContext } from "@react-navigation/native";
+import { ImageBackground } from 'react-native';
 
 const NovoRelatorio = ({ navigation }) => {
 
@@ -41,6 +42,9 @@ const NovoRelatorio = ({ navigation }) => {
 
     return (
         <View style={styles.view}>
+                <ImageBackground source={require('../../assets/images/relatorios.png')} style={styles.imageBackground}>
+                <View style={styles.container}>
+                <br></br>
             <Image
                 source={Logo}
                 style={[styles.logo, { height: height * 0.3 }]}
@@ -48,27 +52,52 @@ const NovoRelatorio = ({ navigation }) => {
             />
 
             <CustomInput
-                placeholder="Nome do Relatorio"
+                placeholder="Nome do Relatório"
                 value={name}
                 setValue={setName}
             />
 
-            <CustomInput
-                placeholder="Description"
+            <CustomInput 
+
+                placeholder="Descrição"
                 value={description}
                 setValue={setDescription}
             />
 
             <CustomButton text="Salvar" onPress={onRegisterPressed} />
+            </View>
+   </ImageBackground>
+
         </View>
+
     )
 };
 
 const styles = StyleSheet.create({
-    view: {
+    container: {
         alignItems: 'center',
-        padding: 20,
+        backgroundColor: 'rgba(136, 138, 138, 0.4)',
+        padding: 15,
+        width: '85%',
+        height: '100%'
     },
+    containers: {
+        flexDirection: "row",
+        flexWrap: "wrap",
+        margin: 10,
+        padding: 10,
+        borderRadius: 10,
+        backgroundColor: 'lightgrey',
+        alignItems: 'center',
+        minWidth: 335
+      },
+      view: {
+        display: 'flex',
+        alignItems: 'center',
+        backgroundColor: '#F8B500',
+        width: '100%',
+        height: '100%',
+      },
     logo: {
         width: '70%',
         maxWidth: 300,
@@ -78,6 +107,15 @@ const styles = StyleSheet.create({
         fontWeight: "bold",
         color: "#6200ee",
     },
+    imageBackground: {
+        flex: 1,
+        resizeMode: "cover",
+        justifyContent: "center",
+        alignItems: "center",
+        opacity: 1,
+        width: "100%",
+    
+      },
 });
 
 export default NovoRelatorio;

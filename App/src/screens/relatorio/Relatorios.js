@@ -5,6 +5,7 @@ import { Entypo } from '@expo/vector-icons';
 import CustomButton from '../../components/CustomButton'
 import CustomInput from '../../components/CustomInput'
 import { Context } from '../../context/dataContext'
+import { ImageBackground } from 'react-native';
 
 const Relatorios = ({navigation}) => {
 
@@ -36,45 +37,54 @@ const Relatorios = ({navigation}) => {
 
 
   return (
+    <View style={styles.view}>
+    <ImageBackground source={require('../../assets/images/relatorios.png')} style={styles.imageBackground}>
+
     <View style={styles.container}>
-   
-      <Text style={styles.text}>relatório</Text>
+    <br></br>
+    {state.isAdmin ? (
      
-      {state.isAdmin ? (
+     <CustomButton text='Novo relatório? Clique aqui' onPress={() => navigation.navigate("NovoRelatorio")} />
+    
+     ) : (
      
-        <CustomButton text='criar relatório' onPress={() => navigation.navigate("NovoRelatorio")} />
-       
-        ) : (
-        
-          <></>
-        
-        )
-      }
+       <></>
+     
+     )
+   }
+
+   <br></br>
+  
+      <Text style={styles.text}>Relatórios criados</Text>
+     
 
       <FlatList
           data={relatorios}
-          renderItem={({ item }) => {
-              return (
-                  <View style={styles.containers}>
-                      <TouchableOpacity style={styles.texts} onPress={() => seeReview(item)}>
-                              <Text style={styles.title}>{item.name}</Text>
-                              <Text style={styles.item}>{item.description}</Text>
-                      </TouchableOpacity>
-                      {/* <Entypo
-                          name="squared-plus"
-                          size={60}
-                          color="green"
-                          style={styles.icon}
-                          onPress={() => newReview(item)}
-                      /> */}
-                  </View>
-              )
-          }
+          renderItem={({ item }) => (
+            <View style={styles.containers}>
+              <TouchableOpacity style={styles.texts} onPress={() => seeReview(item)}>
+                <Text style={styles.title}>{item.name}</Text>
+                <View style={styles.containers2}>
+                <Text style={styles.item}>{item.description}</Text>
+                <Text style={styles.item}>Registro em: {item.createdAt}</Text>
+                </View>
+              </TouchableOpacity>
+              {/* <Entypo
+            name="squared-plus"
+            size={60}
+            color="green"
+            style={styles.icon}
+            onPress={() => newReview(item)}
+        /> */}
+            </View>
+          )
           }
           keyExtractor={(item) => item.id}
       />
       
    </View>
+   </ImageBackground>
+  </View>
   )
 
 }
@@ -83,16 +93,17 @@ export default Relatorios
 
 const styles = StyleSheet.create({
   container: {
-      backgroundColor: '#FFFFFF',
-      alignItems: 'center',
-      padding: 20,
-      width: '100%',
-      height: '100%'
-  },
+    alignItems: 'center',
+    backgroundColor: 'rgba(136, 138, 138, 0.4)',
+    padding: 15,
+    width: '85%',
+    height: '100%'
+},
   text:{
     fontWeight: 'bold',
     alignItems: 'center',
-    fontSize: 20
+    fontSize: 20, 
+    color: 'white'
   },
   containers: {
     flexDirection: "row",
@@ -103,6 +114,14 @@ const styles = StyleSheet.create({
     backgroundColor: 'lightgrey',
     alignItems: 'center',
     minWidth: 335
+  },
+
+  view: {
+    display: 'flex',
+    alignItems: 'center',
+    backgroundColor: '#F8B500',
+    width: '100%',
+    height: '100%',
   },
   texts: {
       height: 120,
@@ -119,5 +138,14 @@ const styles = StyleSheet.create({
   },
   icon: {
       margin: 0
-  }
+  },
+  imageBackground: {
+    flex: 1,
+    resizeMode: "cover",
+    justifyContent: "center",
+    alignItems: "center",
+    opacity: 1,
+    width: "100%",
+
+  },
 });

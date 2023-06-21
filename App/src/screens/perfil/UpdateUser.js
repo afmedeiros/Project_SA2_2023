@@ -4,6 +4,7 @@ import api from '../../api';
 import { Entypo } from '@expo/vector-icons';
 import CustomButton from '../../components/CustomButton';
 import { Context } from '../../context/dataContext';
+import { ImageBackground } from 'react-native';
 
 const UpdateUser = ({ navigation }) => {
 
@@ -50,10 +51,12 @@ const UpdateUser = ({ navigation }) => {
   }
 
   return (
-    <View style={styles.container}>
+    <View style={styles.view}>
+    <ImageBackground source={require('../../assets/images/medicao.png')} style={styles.imageBackground}>
+      <View style={styles.container}>
       <View style={styles.Cabecario}>
-        <Text style={styles.text1}>UpdateUser</Text>
-      </View>
+        <Text style={styles.text1}>Gerenciamento de Funcionários</Text>
+      <br></br></View>
 
       <View style={styles.corpo}>
         <View style={styles.view1}>
@@ -62,6 +65,10 @@ const UpdateUser = ({ navigation }) => {
         </View>
 
         <View style={styles.view2}>
+        <Text style={styles.text1}>Funcionários Cadastrados</Text>
+        <Text style={styles.text3}>Deseja excluir? Clique no X</Text>
+
+
           <FlatList
             data={funcionarios}
             renderItem={({ item }) => {
@@ -87,18 +94,30 @@ const UpdateUser = ({ navigation }) => {
         </View>
       </View>
     </View>
+    </ImageBackground>
+    </View>
+
   )
 }
 
 export default UpdateUser
 
 const styles = StyleSheet.create({
-  container: {
-    backgroundColor: '#FFFFFF',
+  view: {
+    display: 'flex',
     alignItems: 'center',
     width: '100%',
-    height: '100%'
+    height: '100%',
+    textAlign: 'left',
   },
+  container: {
+    alignItems: 'center',
+    backgroundColor: 'rgba(136, 138, 138, 0.4)',
+    padding: 15,
+    width: '85%',
+    height: '100%',
+    textAlign: 'left',
+    },
   Cabecario: {
     alignItems: 'center',
     width: '100%',
@@ -111,9 +130,13 @@ const styles = StyleSheet.create({
     height: '90%'
   },
   view1: {
+ 
+    flexDirection: 'row',
+    justifyContent: 'space-evenly',
     alignItems: 'center',
-    width: '100%',
-    height: '20%',
+    gap: 10,
+    padding: 10,
+    outterSpacing: 10,
   },
   view2: {
     alignItems: 'center',
@@ -126,6 +149,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     fontSize: 20
+  },
+  text3:{
+    fontWeight: 'bold',
+    alignItems: 'center',
+    justifyContent: 'center',
+    fontSize: 14
   },
   containers: {
     flexDirection: "row",
@@ -154,5 +183,14 @@ const styles = StyleSheet.create({
   },
   icon: {
       margin: 0,
-  }
+  },
+  imageBackground: {
+    flex: 1,
+    resizeMode: "cover",
+    justifyContent: "center",
+    alignItems: "center",
+    opacity: 1,
+    width: "100%",
+
+  },
 });
