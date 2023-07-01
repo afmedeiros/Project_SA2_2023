@@ -22,7 +22,7 @@ const Menu = ({navigation}) => {
 
         <CustomButton2 text="Perfil" onPress={() => navigation.navigate("Perfil")} />
 
-        <CustomButton2 text="Setores" onPress={() => navigation.navigate("Setors")} />
+        <CustomButton2 text="Setores" onPress={() => navigation.navigate("Setores")} />
 
       </View >
 
@@ -30,7 +30,7 @@ const Menu = ({navigation}) => {
 
         <CustomButton2 text="Mediçoes" onPress={() => navigation.navigate("Medicoes")} />
 
-        <CustomButton2 text="Relatorio" onPress={() => navigation.navigate("Relatorios")} />
+        <CustomButton2 text="Relatorio" onPress={() => navigation.navigate("Relatórios")} />
       </View>
       
       </ImageBackground>

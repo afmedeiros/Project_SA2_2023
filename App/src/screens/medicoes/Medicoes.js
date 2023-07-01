@@ -52,6 +52,7 @@ const Medicoes = ({navigation}) => {
                                     <Text style={styles.title}>Valor: {item.medicao} lux</Text>
                                     <Text style={styles.item}>Ambiente: {item.idSala}</Text>
                                     <Text style={styles.item}>Comentário: {item.comment}</Text>
+                                    <Text style={styles.item}>Registrado: {item.createdAt.slice(0,10)}</Text>
                             </TouchableOpacity>
                            </View>
                     )

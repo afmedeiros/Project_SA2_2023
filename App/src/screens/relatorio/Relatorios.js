@@ -66,7 +66,7 @@ const Relatorios = ({navigation}) => {
                 <Text style={styles.title}>{item.name}</Text>
                 <View style={styles.containers2}>
                 <Text style={styles.item}>{item.description}</Text>
-                <Text style={styles.item}>Registro em: {item.createdAt}</Text>
+                <Text style={styles.item}>Registro em: {item.createdAt.slice(0,10)}</Text>
                 </View>
               </TouchableOpacity>
               {/* <Entypo
@@ -113,7 +113,8 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     backgroundColor: 'lightgrey',
     alignItems: 'center',
-    minWidth: 335
+    minWidth: 335,
+    minHeight: 190
   },
 
   view: {

@@ -36,7 +36,7 @@ perfil.post('/senhaUpdate', async (req, res) => {
     const { admin, email, password, newPassword, confirmacao } = req.body;
 
     if (newPassword === confirmacao) {
-        if (!admin) {
+        if (admin) {
             const senhaEmpresa = await Empresa.findOne({
                 where: { email }
             }).then(async (resp) => {
@@ -60,7 +60,7 @@ perfil.post('/senhaUpdate', async (req, res) => {
             }
             })
             
-        } else if (admin) {
+        } else if (!admin) {
             const senhaFuncionario = await Funcionario.findOne({
                 where: { email }
             }).then(async (resp) => {

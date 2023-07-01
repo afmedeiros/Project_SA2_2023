@@ -5,6 +5,7 @@ import Logo from '../assets/images/logo.png';
 import CustomInput from "../components/CustomInput";
 import CustomButton from "../components/CustomButton";
 import api from "../api";
+import { ImageBackground } from "react-native";
 
 const RegisterUser = ({navigation}) => {
     const [name, setName] = useState('');
@@ -47,6 +48,9 @@ const RegisterUser = ({navigation}) => {
 
         return (
             <View style={styles.view}>
+            <ImageBackground source={require('../assets/images/background.jpg')} style={styles.imageBackground}>
+      
+            <View style={styles.view}>
                 <Image source={Logo} style={[styles.logo, { height: height * 0.3 }]} resizeMode="contain" /> 
 
                 <CustomInput placeholder="Nome da Empresa" value={name} setValue={setName} />
@@ -66,17 +70,35 @@ const RegisterUser = ({navigation}) => {
                     </Text>
                 </TouchableOpacity>
             </View>
+            </ImageBackground>
+      </View>
         )
 };
 
 
 const styles = StyleSheet.create({
     view: {
-        backgroundColor: '#FFFFFF',
+       
         alignItems: 'center',
         padding: 20,
         width: '100%',
         height: '100%'
+        },
+        imageBackground: {
+            flex: 1,
+            resizeMode: "cover",
+            justifyContent: "center",
+            alignItems: "center",
+            opacity: 1,
+            width: "100%",
+        
+          },
+        container: {
+            alignItems: 'center',
+            backgroundColor: 'rgba(136, 138, 138, 0.4)',
+            padding: 15,
+            width: '85%',
+            height: '100%'
         },
     logo: {
         width: '70%',

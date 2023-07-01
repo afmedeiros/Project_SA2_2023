@@ -66,14 +66,15 @@ const MedicoesSala = ({navigation}) => {
     <ImageBackground source={require('../../assets/images/setor.png')} style={styles.imageBackground}>
     
     <View onPress={onRegisterPressed} style={styles.container}>
-      <CustomButton text='Voltar' onPress={() => navigation.navigate("Setors")} />
+      <CustomButton text='Voltar' onPress={() => navigation.navigate("SalasDoSetor")} />
       <FlatList
           data={medicoes}
           renderItem={({ item }) => {
               return (
                   <View style={styles.containers}>
                       <TouchableOpacity style={styles.texts} onPress={() => seeReview(item)}>
-                              <Text style={styles.title}>{item.medicao}</Text>
+                              <Text style={styles.title}>{item.medicao} lux</Text>
+                              <Text style={styles.item}>Registrado: {item.createdAt.slice(0,10)}</Text>
                       </TouchableOpacity>
                   </View>
               )
@@ -138,7 +139,7 @@ const styles = StyleSheet.create({
       fontWeight: 'bold',
   },
   item: {
-      fontSize: 18,
+      fontSize: 15,
       fontWeight: 'bold',
   },
   icon: {
