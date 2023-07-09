@@ -60,7 +60,7 @@ const Perfil = ({navigation}) => {
       <br></br>
       {state.isAdmin ? (
 
-<CustomButton text='Gerenciar Funcionários? Clique aqui' onPress={() => navigation.navigate("UpdateUser")} />
+<CustomButton text='Gerenciar Funcionários' onPress={() => navigation.navigate("UpdateUser")} />
 
 ) : (
 

@@ -13,7 +13,7 @@ const Menu = ({navigation}) => {
       <ImageBackground source={require('../assets/images/background.jpg')} style={styles.imageBackground}>
 
       <View style={styles.viewc}>
-        <Text style={styles.text}>Bem-Vindo(a) {state.name}</Text>
+        <Text style={styles.text}>Bem-vindo(a) {state.name}</Text>
         <Text style={styles.text}>Vamos começar?</Text>
         
       </View>

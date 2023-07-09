@@ -44,7 +44,7 @@ const Relatorios = ({navigation}) => {
     <br></br>
     {state.isAdmin ? (
      
-     <CustomButton text='Novo relatório? Clique aqui' onPress={() => navigation.navigate("NovoRelatorio")} />
+     <CustomButton text='Novo relatório' onPress={() => navigation.navigate("NovoRelatorio")} />
     
      ) : (
      

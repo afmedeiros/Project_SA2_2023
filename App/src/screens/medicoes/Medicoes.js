@@ -35,7 +35,7 @@ const Medicoes = ({navigation}) => {
 
       {state.isAdmin ? (
 
-        <CustomButton text='Nova medição? Clique aqui' onPress={() => navigation.navigate("NovaMedicao")} />
+        <CustomButton text='Nova medição' onPress={() => navigation.navigate("NovaMedicao")} />
 
         ) : (
           <></>

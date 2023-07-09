@@ -7,6 +7,7 @@ import api from '../../api';
 import { Context } from '../../context/dataContext';
 import { NavigationHelpersContext } from "@react-navigation/native";
 import { ImageBackground } from 'react-native';
+import Relatorios from "./Relatorios";
 
 const NovoRelatorio = ({ navigation }) => {
 
@@ -17,7 +18,7 @@ const NovoRelatorio = ({ navigation }) => {
 
     const { height } = useWindowDimensions();
 
-    const onRegisterPressed = async ({navigation}) => {
+    const onRegisterPressed = async ({}) => {
         try {
             const authData = await api.post("/relatorio/register", {
                 name: name,
@@ -29,7 +30,7 @@ const NovoRelatorio = ({ navigation }) => {
                 setName("")
                 setDescription("")
                 dispatch({type: "update", payload: true})
-                navigation.navigate('Relatorios')
+                navigation.navigate("Relatorios")
             }
             else {
                 console.log(authData.data.message)

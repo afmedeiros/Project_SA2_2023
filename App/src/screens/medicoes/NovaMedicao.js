@@ -51,6 +51,7 @@ const NovaMedicao = ({ navigation }) => {
                 setMedicao("")
                 setComment("")
                 dispatch({ type: "update", payload: true })
+                navigation.navigate("Medicoes")
             }
             else {
                 console.log(authData.data.message)

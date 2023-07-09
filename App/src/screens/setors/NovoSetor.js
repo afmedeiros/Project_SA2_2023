@@ -27,7 +27,7 @@ const NovoSetor = ({navigation}) => {
 
             console.log(data);
             alert(data.data.message)
-            navigation.navigate('Setors')
+            navigation.navigate('Setores')
 
         }else{
 

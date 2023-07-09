@@ -46,7 +46,7 @@ const Setores = ({navigation}) => {
 
         {state.isAdmin ? (
           
-        <CustomButton text='Novo setor? Clique aqui' onPress={() => navigation.navigate("NovoSetor")} />
+        <CustomButton text='Novo setor' onPress={() => navigation.navigate("NovoSetor")} />
 
           ) : (
           

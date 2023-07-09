@@ -8,7 +8,7 @@ const Stack = createNativeStackNavigator();
 const RelatorioRoutes = ({ navigation }) => {
     return (
             <Stack.Navigator screenOptions={{ headerShown: false }} >
-                <Stack.Screen name="Relatórios" component={Relatorios} />
+                <Stack.Screen name="Relatorios" component={Relatorios} />
                 <Stack.Screen name="NovoRelatorio" component={NovoRelatorio} />
 
             </Stack.Navigator>
